@@ -1,0 +1,363 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0077)http://opensource.telkomspeedy.com/wiki/index.php/OpenWRT:_Setup_Coova-Chilli -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+				<meta name="keywords" content="OpenWRT: Setup Coova-Chilli">
+		<link rel="shortcut icon" href="http://opensource.telkomspeedy.com/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://opensource.telkomspeedy.com/wiki/opensearch_desc.php" title="SpeedyWiki (English)">
+		<link title="Creative Commons" type="application/rdf+xml" href="http://opensource.telkomspeedy.com/wiki/index.php?title=OpenWRT:_Setup_Coova-Chilli&amp;action=creativecommons" rel="meta">
+		<link rel="copyright" href="http://www.gnu.org/copyleft/fdl.html">
+		<title>OpenWRT: Setup Coova-Chilli - SpeedyWiki</title>
+		<style type="text/css" media="screen,projection">/*<![CDATA[*/ @import "/wiki/skins/monobook/main.css?63"; /*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="./OpenWRT_ Setup Coova-Chilli - SpeedyWiki_files/commonPrint.css">
+		<link rel="stylesheet" type="text/css" media="handheld" href="./OpenWRT_ Setup Coova-Chilli - SpeedyWiki_files/handheld.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE50Fixes.css?63";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE55Fixes.css?63";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/wiki/skins/monobook/IE60Fixes.css?63";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/wiki/skins/monobook/IE70Fixes.css?63";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/wiki/skins/common/IEFixes.js?63"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type="text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/wiki/skins";
+var wgArticlePath = "/wiki/index.php/$1";
+var wgScriptPath = "/wiki";
+var wgServer = "http://opensource.telkomspeedy.com";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "OpenWRT:_Setup_Coova-Chilli";
+var wgTitle = "OpenWRT: Setup Coova-Chilli";
+var wgAction = "view";
+var wgArticleId = "11570";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "43887";
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="./OpenWRT_ Setup Coova-Chilli - SpeedyWiki_files/wikibits.js.tải xuống"><!-- wikibits js --></script><link rel="stylesheet" type="text/css" href="./OpenWRT_ Setup Coova-Chilli - SpeedyWiki_files/KHTMLFixes.css">
+		<script type="text/javascript" src="./OpenWRT_ Setup Coova-Chilli - SpeedyWiki_files/index.php"><!-- site js --></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/wiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/wiki/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/wiki/index.php?title=-&action=raw&gen=css&maxage=18000";
+/*]]>*/</style>
+		<!-- Head Scripts -->
+	</head>
+<body class="mediawiki ns-0 ltr page-OpenWRT_Setup_Coova-Chilli">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">OpenWRT: Setup Coova-Chilli</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From SpeedyWiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="http://opensource.telkomspeedy.com/wiki/index.php/OpenWRT:_Setup_Coova-Chilli#column-one">navigation</a>, <a href="http://opensource.telkomspeedy.com/wiki/index.php/OpenWRT:_Setup_Coova-Chilli#searchInput">search</a></div>			<!-- start content -->
+			<p>Download required Packages
+1. Download openwrt-ar71xx-generic-tl-mr3220-v1-squashfs-factory.bin from <a href="http://downloads.openwrt.org/snapshots/trunk/ar71xx/" class="external free" title="http://downloads.openwrt.org/snapshots/trunk/ar71xx/" rel="nofollow">http://downloads.openwrt.org/snapshots/trunk/ar71xx/</a>.
+2. Download the following from <a href="http://downloads.openwrt.org/snapshots/trunk/ar71xx/packages/" class="external free" title="http://downloads.openwrt.org/snapshots/trunk/ar71xx/packages/" rel="nofollow">http://downloads.openwrt.org/snapshots/trunk/ar71xx/packages/</a>
+</p><p>Packages yang dibutuhkan
+</p>
+<pre>   coova-chilli
+   haserl
+   kmod-tun
+   libpthread
+   librt
+</pre>
+<p>Flash OpenWRT for MR3220
+</p>
+<ul><li> Use a LAN cable to connect your computer to one of the LAN ports of the router
+</li><li> Start a browser and go to <a href="http://192.168.1.1/" class="external free" title="http://192.168.1.1" rel="nofollow">http://192.168.1.1</a> (this is the router's default IP address, change this accordingly if you already changed your router's IP address)
+</li><li> Choose System Tools --&gt; Firmware Upgrade
+</li><li> Click the Browse button
+</li><li> Locate and select openwrt-ar71xx-generic-tl-mr3220-v1-squashfs-factory.bin file
+</li><li> Click the Upgrade button
+</li><li> Wait until it says rebooting
+</li></ul>
+<p>In this stage OpenWRT is already installed in your router and you will not be able to access your router’s web interface
+Initialize OpenWRT
+For first time login, you have to set root’s password. Follow these steps.
+</p>
+<pre>   Still connected to your router, open telnet and connect to 192.168.1.1
+   Once logged in you should be see a display similar to this:
+</pre>
+<pre>     BusyBox v1.19.4 (2012-11-18 23:21:39 EST) built-in shell (ash)
+     Enter 'help' for a list of built-in commands.
+     
+     _______                     ________        __
+     |       |.-----.-----.-----.|  |  |  |.----.|  |_
+     |   -   ||  _  |  -__|     ||  |  |  ||   _||   _|
+     |_______||   __|_____|__|__||________||__|  |____|
+     |__| W I R E L E S S   F R E E D O M
+     -----------------------------------------------------
+     BARRIER BREAKER (Bleeding Edge, r34253)
+     -----------------------------------------------------
+     * 1/2 oz Galliano         Pour all ingredients into
+     * 4 oz cold Coffee        an irish coffee mug filled
+     * 1 1/2 oz Dark Rum       with crushed ice. Stir.
+     * 2 tsp. Creme de Cacao
+     -----------------------------------------------------
+     root@OpenWrt:~# 
+</pre>
+<pre>   To set root’s password type passwd the press return key
+   Type in root’s new password, press return, then re-type the password for confirmation
+</pre>
+<p>After setting the password you should quit telnet and login to the router using ssh
+Setup Wireless Configuration
+</p>
+<pre>   Login to the router using ssh
+</pre>
+<pre>ssh root@192.168.1.1
+</pre>
+<p>Edit /etc/config/wireless
+</p>
+<pre>vi /etc/config/wireless
+</pre>
+<p>Comment or delete the line “option disabled 1” to enable wireless LAN
+Optionally change the SSID by changing the value of “option ssid”, from OpenWRT to your choice
+Save and close the file
+Execute wifi to force the system to re-read the wireless configuration file and start wireless LAN
+</p><p>Install CoovaChilli
+</p><p>Go to your computer’s terminal and copy the rest of the packages to router’s /tmp directory
+</p>
+<pre>scp coova-chilli_1.2.9-1_ar71xx.ipk haserl_0.9.29-1_ar71xx.ipk kmod-tun_3.3.8-1_ar71xx.ipk libpthread_0.9.33.2-1_ar71xx.ipk librt_0.9.33.2-1_ar71xx.ipk root@192.168.1.1:/tmp
+</pre>
+<p>Log back in to the router
+</p>
+<pre>ssh root@192.168.1.1
+</pre>
+<p>Go to /tmp and install the packages in the following order
+</p>
+<pre>opkg install librt_0.9.33.2-1_ar71xx.ipk
+opkg install libpthread_0.9.33.2-1_ar71xx.ipk
+opkg install kmod-tun_3.3.8-1_ar71xx.ipk
+opkg install coova-chilli_1.2.9-1_ar71xx.ipk
+opkg install haserl_0.9.29-1_ar71xx.ipk 
+</pre>
+<p>Setup CoovaChilli
+</p>
+<pre>Configuration File
+</pre>
+<pre>   Open /etc/chilli/defaults and change the following lines
+</pre>
+<p><br>      
+</p>
+<pre>     from “# HS_WANIF=eth0                      # WAN Interface toward the Internet”
+     to “HS_WANIF=eth1                          # WAN Interface toward the Internet”
+     
+     from “HS_LANIF=eth1                        # Subscriber Interface for client devices”
+     to “HS_LANIF=wlan0                         # Subscriber Interface for client devices”
+     
+     from “HS_RADIUS=locahost”
+     to “HS_RADIUS=&lt;your RADIUS IP address&gt;”
+     
+     from "HS_RADSECRET=testing123              # Set to be your RADIUS shared secret"
+     to "HS_RADSECRET=&lt;your RADIUS password&gt;    # Set to be your RADIUS shared secret
+</pre>
+<pre>   Save and close the file
+</pre>
+<p><br>
+Start-up Script
+Now we need to create the startup script for coova-chilli. Coova-chilli package does not provide this so we have to create this by hand
+Create a the file /etc/init.d/chilli with the following content
+</p>
+<pre>    #!/bin/sh /etc/rc.common
+    # - init script for chilli -
+</pre>
+<pre>    START=60
+    STOP=90
+</pre>
+<pre>    NAME=chilli
+    RUN_D=/var/run
+    CMDSOCK=$RUN_D/$NAME.sock
+    PIDFILE=$RUN_D/$NAME.pid
+</pre>
+<pre>    option_cb() { [ -n "$2" ] &amp;&amp; echo "HS_$(echo $1|tr 'a-z' 'A-Z')=\"$2\"" | sed 's/\$/\\\$/g'; }
+    config_load hotspot &gt; /etc/chilli/config
+</pre>
+<pre>    . /etc/chilli/functions
+</pre>
+<pre>    start() {
+        HS_DNS_DOMAIN=${HS_DNS_DOMAIN:-cap.coova.org}
+        HS_DNS1=${HS_DNS1:-$HS_UAMLISTEN}
+        HS_DNS2=${HS_DNS2:-$HS_NASIP}
+        HS_NASID=${HS_NASID:-$HS_NASMAC}
+        HS_MACAUTHMODE=${HS_MACAUTHMODE:-local}
+        HS_USELOCALUSERS=${HS_USELOCALUSERS:-off}
+        HS_PROXY_TYPE=${HS_PROXY_TYPE:-none}
+        HS_RADCONF_URL=${HS_RADCONF_URL:-<a href="http://ap.coova.org/config/tos.conf%7D" class="external free" title="http://ap.coova.org/config/tos.conf}" rel="nofollow">http://ap.coova.org/config/tos.conf}</a>
+        HS_CFRAME_URL=${HS_CFRAME_URL:-<a href="http://coova.org/cframe/default/%7D" class="external free" title="http://coova.org/cframe/default/}" rel="nofollow">http://coova.org/cframe/default/}</a>
+        HS_CFRAME_SZ=${HS_CFRAME_SZ:-100}
+        HS_DEFSESSIONTIMEOUT=${HS_DEFSESSIONTIMEOUT:-0}
+        HS_DEFIDLETIMEOUT=${HS_DEFIDLETIMEOUT:-0}
+        HS_DEFINTERIMINTERVAL=${HS_DEFINTERIMINTERVAL:-300}
+        HS_LAN_ACCESS=${HS_LAN_ACCESS:-deny}
+        HS_CFRAME_POS=${HS_CFRAME_POS:-top}
+        HS_PROVIDER=${HS_PROVIDER:-Coova}
+        HS_PROVIDER_LINK=${HS_PROVIDER_LINK:-<a href="http://coova.org/%7D" class="external free" title="http://coova.org/}" rel="nofollow">http://coova.org/}</a>
+        HS_LOC_NAME=${HS_LOC_NAME:-My HotSpot}
+        HS_LOC_NETWORK=${HS_LOC_NETWORK:-Coova}
+        HS_OPENIDAUTH=${HS_OPENIDAUTH:-off}
+        HS_ANYIP=${HS_ANYIP:-off}
+</pre>
+<pre>        [ -z "$HS_LANIF" ] &amp;&amp; {
+            [ -e /tmp/device.hotspot ] &amp;&amp; {
+                stop
+            }
+            HS_LANIF=$(wlanconfig ath create wlandev wifi0 wlanmode ap)
+            for i in 0 1 2 3 4; do ifconfig ath$i mtu 1500; done 2&gt;/dev/null
+            echo $HS_LANIF &gt; /tmp/device.hotspot
+            iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+            iwconfig $HS_LANIF essid ${HS_SSID:-Coova} 2&gt;/dev/null
+        }
+</pre>
+<pre>        writeconfig
+        radiusconfig
+                                                                                           
+        [ -d $RUN_D ] || mkdir -p $RUN_D
+</pre>
+<pre>        /sbin/insmod tun &gt;&amp;- 2&gt;&amp;-
+        /usr/sbin/chilli
+    }
+</pre>
+<pre>    stop() {
+        [ -f $PIDFILE ] &amp;&amp; kill $(cat $PIDFILE)
+        rm -f $PIDFILE $LKFILE $CMDSOCK 2&gt;/dev/null
+        iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+        wlanconfig $(cat /tmp/device.hotspot) destroy
+        rm /tmp/device.hotspot
+    }
+</pre>
+<p><br>
+Automatically Start CoovaChilli
+Create a symbolic link to /etc/init.d/chilli in /etc/rc.d and name it S60chilli
+</p>
+<pre>cd /etc/rc.d
+ln -s ../init.d/chilli S60chilli
+</pre>
+<p>This will automatically start CoovaChilli everytime you start your router.
+</p><p>Login Page
+Lastly we need to create the login pages for CoovaChilli. CoovaChilli's package for OpenWRT does not include this and so we have to download CoovaChilli's source code and copy the contents of the miniportal forder
+</p>
+<pre>   Back in your computer, download CoovaChilli's source code
+
+wget <a href="http://ap.coova.org/chilli/coova-chilli-1.3.0.tar.gz" class="external free" title="http://ap.coova.org/chilli/coova-chilli-1.3.0.tar.gz" rel="nofollow">http://ap.coova.org/chilli/coova-chilli-1.3.0.tar.gz</a>
+Untar the package
+tar -xzvf coova-chilli-1.3.0.tar.gz
+Goto the miniportal folder
+cd coova-chilli-1.3.0/miniportal
+Edit the files functions.sh.in, config-local.sh.in, uam.sh.in and replace @SBINDIR@ and @ETCCHILLI@ with /usr/sbin and /etc/chilli respectively
+Rename the files that end in ".in", removing ".in" part
+e.g. functions.sh.in will be renamed to functions.sh
+</pre>
+<p><br>
+</p>
+<pre>Copy the contents of miniportal folder to your router's /etc/chilli/www
+scp * root@192.168.1.1:/etc/chilli/www/  
+</pre>
+<p><br>
+We're done. All you have to do is reboot your router and connect to it once it starts up.
+</p><p>When you open your browser and starts browsing you will be redirected to CoovaChilli's login page.
+</p><p>Enjoy!!! 
+</p><p><br>
+</p><p><br>
+</p>
+<a name="Referensi"></a><h2><span class="editsection">[<a href="http://opensource.telkomspeedy.com/wiki/index.php?title=OpenWRT:_Setup_Coova-Chilli&amp;action=edit&amp;section=1" title="Edit section: Referensi">edit</a>]</span> <span class="mw-headline">Referensi</span></h2>
+<ul><li> <a href="http://www.hotspotsystem.com/installation-guide-openwrt" class="external free" title="http://www.hotspotsystem.com/installation-guide-openwrt" rel="nofollow">http://www.hotspotsystem.com/installation-guide-openwrt</a>
+</li><li> <a href="http://coova.org/CoovaChilli/Documentation" class="external free" title="http://coova.org/CoovaChilli/Documentation" rel="nofollow">http://coova.org/CoovaChilli/Documentation</a>
+</li><li> <a href="http://emandeguzman.blogspot.hk/2012/11/openwrtcoovachilli.html" class="external free" title="http://emandeguzman.blogspot.hk/2012/11/openwrtcoovachilli.html" rel="nofollow">http://emandeguzman.blogspot.hk/2012/11/openwrtcoovachilli.html</a>
+</li></ul>
+
+<!-- Saved in parser cache with key wikidb-wiki_:pcache:idhash:11570-0!1!0!!en!2 and timestamp 20170209233556 -->
+<div class="printfooter">
+Retrieved from "<a href="http://opensource.telkomspeedy.com/wiki/index.php/OpenWRT:_Setup_Coova-Chilli">http://opensource.telkomspeedy.com/wiki/index.php/OpenWRT:_Setup_Coova-Chilli</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+					 <li id="ca-nstab-main" class="selected"><a href="http://opensource.telkomspeedy.com/wiki/index.php/OpenWRT:_Setup_Coova-Chilli" title="View the content page [ctrl-c]" accesskey="c">Article</a></li>
+					 <li id="ca-talk" class="new"><a href="http://opensource.telkomspeedy.com/wiki/index.php?title=Talk:OpenWRT:_Setup_Coova-Chilli&amp;action=edit" title="Discussion about the content page [ctrl-t]" accesskey="t">Discussion</a></li>
+					 <li id="ca-edit"><a href="http://opensource.telkomspeedy.com/wiki/index.php?title=OpenWRT:_Setup_Coova-Chilli&amp;action=edit" title="You can edit this page. Please use the preview button before saving. [ctrl-e]" accesskey="e">Edit</a></li>
+					 <li id="ca-history"><a href="http://opensource.telkomspeedy.com/wiki/index.php?title=OpenWRT:_Setup_Coova-Chilli&amp;action=history" title="Past versions of this page. [ctrl-h]" accesskey="h">History</a></li>
+				</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-login"><a href="http://opensource.telkomspeedy.com/wiki/index.php?title=Special:Userlogin&amp;returnto=OpenWRT:_Setup_Coova-Chilli" title="You are encouraged to log in, it is not mandatory however. [ctrl-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://125.160.17.21/speedy.gif);" href="http://opensource.telkomspeedy.com/wiki/index.php/Main_Page" title="Visit the Main Page [ctrl-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+		<div class="portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://opensource.telkomspeedy.com/wiki/index.php/Main_Page" title="Visit the Main Page [ctrl-z]" accesskey="z">Main Page</a></li>
+				<li id="n-portal"><a href="http://opensource.telkomspeedy.com/wiki/index.php/SpeedyWiki:Community_Portal" title="About the project, what you can do, where to find things">Community portal</a></li>
+				<li id="n-currentevents"><a href="http://opensource.telkomspeedy.com/wiki/index.php/Current_events" title="Find background information on current events">Current events</a></li>
+				<li id="n-recentchanges"><a href="http://opensource.telkomspeedy.com/wiki/index.php/Special:Recentchanges" title="The list of recent changes in the wiki. [ctrl-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://opensource.telkomspeedy.com/wiki/index.php/Special:Random" title="Load a random page [ctrl-x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="http://opensource.telkomspeedy.com/wiki/index.php/Help:Contents" title="The place to find out.">Help</a></li>
+				<li id="n-sitesupport"><a href="http://opensource.telkomspeedy.com/wiki/index.php/SpeedyWiki:Site_support" title="Support us">Donations</a></li>
+			</ul>
+		</div>
+	</div>
+		<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://opensource.telkomspeedy.com/wiki/index.php/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" type="text" title="Search SpeedyWiki [ctrl-f]" accesskey="f" value="">
+				<input type="submit" name="go" class="searchButton" id="searchGoButton" value="Go">&nbsp;
+				<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search">
+			</div></form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://opensource.telkomspeedy.com/wiki/index.php/Special:Whatlinkshere/OpenWRT:_Setup_Coova-Chilli" title="List of all wiki pages that link here [ctrl-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://opensource.telkomspeedy.com/wiki/index.php/Special:Recentchangeslinked/OpenWRT:_Setup_Coova-Chilli" title="Recent changes in pages linked from this page [ctrl-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://opensource.telkomspeedy.com/wiki/index.php/Special:Upload" title="Upload images or media files [ctrl-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://opensource.telkomspeedy.com/wiki/index.php/Special:Specialpages" title="List of all special pages [ctrl-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://opensource.telkomspeedy.com/wiki/index.php?title=OpenWRT:_Setup_Coova-Chilli&amp;printable=yes">Printable version</a></li>				<li id="t-permalink"><a href="http://opensource.telkomspeedy.com/wiki/index.php?title=OpenWRT:_Setup_Coova-Chilli&amp;oldid=43887">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="./OpenWRT_ Setup Coova-Chilli - SpeedyWiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+				<div id="f-copyrightico"><a href="http://www.gnu.org/copyleft/fdl.html"><img src="./OpenWRT_ Setup Coova-Chilli - SpeedyWiki_files/gnu-fdl.png" alt="GNU Free Documentation License 1.2"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified 02:26, 18 July 2015.</li>
+				<li id="viewcount">This page has been accessed 2,821 times.</li>
+				<li id="copyright">Content is available under <a href="http://www.gnu.org/copyleft/fdl.html" class="external " title="http://www.gnu.org/copyleft/fdl.html" rel="nofollow">GNU Free Documentation License 1.2</a>.</li>
+				<li id="privacy"><a href="http://opensource.telkomspeedy.com/wiki/index.php/SpeedyWiki:Privacy_policy" title="SpeedyWiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="http://opensource.telkomspeedy.com/wiki/index.php/SpeedyWiki:About" title="SpeedyWiki:About">About SpeedyWiki</a></li>
+				<li id="disclaimer"><a href="http://opensource.telkomspeedy.com/wiki/index.php/SpeedyWiki:General_disclaimer" title="SpeedyWiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+		
+	
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+</div>
+<!-- Served by opensource.telkomspeedy.com in 0.045 secs. -->
+</body></html>
