@@ -40,7 +40,7 @@ public class AddUser {
         }
                
         System.out.println("Connecting database...");
-        this.url = "jdbc:mysql://192.168.140.133:3306/radiusdb";
+        this.url = "jdbc:mysql://192.168.1.15:3306/radiusdb";
         this.connection = DriverManager.getConnection(this.url,"radiususer","radiuspass");
         //                Class.forName("com.mysql.jdbc.Driver").newInstance();
         System.out.println("Connect Success!");
