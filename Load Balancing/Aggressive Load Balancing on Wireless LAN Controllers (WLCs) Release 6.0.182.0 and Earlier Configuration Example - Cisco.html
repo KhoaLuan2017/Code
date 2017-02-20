@@ -1,0 +1,2137 @@
+<!DOCTYPE html>
+<!-- saved from url=(0118)http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html -->
+<html xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/" lang="en" xml:lang="en" class=" js flexbox flexboxlegacy canvas canvastext webgl geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths no-compatibilitymode no-touch overthrow-enabled custom-font custom-font custom-font megamenu"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" charset="utf-8" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/6si.min.js.tải xuống" id="utag_83"></script><script type="text/javascript" async="" charset="utf-8" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/ytc.js.tải xuống" id="utag_76"></script><script type="text/javascript" async="" charset="utf-8" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/bat.js.tải xuống" id="utag_75"></script><script type="text/javascript" async="" charset="utf-8" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/analytics.js.tải xuống" id="tealium-tag-7110"></script><script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/elqCfg.min.js.tải xuống"></script><script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/insight.min.js.tải xuống"></script><script type="text/javascript" async="" charset="utf-8" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/8a1d0a1c4fdd2778014fe08b2202043b.js.tải xuống" id="utag_58"></script><script src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/utag.js.tải xuống" type="text/javascript" data-config-src="framework" async=""></script>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+    <title>Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco</title>
+    
+    
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="format-detection" content="telephone=no">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <meta name="fb:app_id" content="156494687694418">
+    <meta name="ioContentSource" content="support">
+    <meta name="concept" content="Cisco 4400 Series Wireless LAN Controllers">
+    <meta name="secondaryConcept" content="Cisco Aironet 1200 Series">
+    <meta name="secondaryConcept" content="Cisco Aironet Wireless LAN Client Adapters">
+    <meta name="secondaryConcept" content="Cisco Aironet 1130 AG Series">
+    <meta name="secondaryConcept" content="Cisco Aironet 1000 Series">
+    <meta name="secondaryConcept" content="Cisco 4100 Series Wireless LAN Controllers">
+    <meta name="secondaryConcept" content="Cisco 2000 Series Wireless LAN Controllers">
+    <meta name="secondaryConcept" content="Cisco Aironet 1240 AG Series">
+    <meta name="secondaryConcept" content="Cisco Catalyst 3750 Series Integrated Wireless LAN Controllers">
+    <meta name="secondaryConcept" content="Cisco Aironet 1250 Series">
+    <meta name="secondaryConcept" content="Cisco 2100 Series Wireless LAN Controllers">
+    <meta name="ioProblemType" content="Configure,Maintain and Operate,Troubleshoot">
+    <meta name="docType" content="TSD Products Tech Note">
+    <meta name="iaPath" content="cisco.com#Products#Cisco Products#Wireless#Wireless LAN Controller#Standalone Controllers#Cisco 4400 Series Wireless LAN Controllers">
+    <meta name="contentType" content="cisco.com#US#postSales">
+    <meta name="locale" content="US">
+    <meta name="language" content="en">
+    <meta name="country" content="US">
+    <meta name="hub" content="Enterprise Networks">
+    <meta name="date" content="Sun Dec 20 05:38:17 PST 2015">
+    <meta name="contentArea" content="Wireless">
+    <meta name="accessLevel" content="Customer">
+    <meta name="accessLevel" content="Guest">
+    <meta name="accessLevel" content="Partner">
+    <meta name="entitlementExpression" content="contains( &quot;0,1,2,3,4,7&quot; , $profileField[3] )">
+    <meta property="og:site_name" content="Cisco">
+    <meta property="og:image" content="http://www.cisco.com/web/fw/i/logo-open-graph.gif">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example">
+    <meta property="og:description" content="This document explains the Aggressive load balancing feature on Wireless LAN Controllers.">
+    <meta property="og:url" content="http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html">
+    
+    <meta name="description" content="This document explains the Aggressive load balancing feature on Wireless LAN Controllers.">
+    <meta name="title" content="Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example">
+    <meta name="documentId" content="107457">
+    <link rel="canonical" href="http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html">
+    <link rel="alternate" hreflang="x-default" href="http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html">
+    <link rel="alternate" hreflang="ja-jp" href="http://www.cisco.com/c/ja_jp/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html">
+    <link rel="alternate" hreflang="pt-br" href="http://www.cisco.com/c/pt_br/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html">
+    <link rel="alternate" hreflang="ru-ru" href="http://www.cisco.com/c/ru_ru/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html">
+    <link rel="alternate" hreflang="zh-cn" href="http://www.cisco.com/c/zh_cn/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html">
+    <link rel="alternate" hreflang="es-mx" href="http://www.cisco.com/c/es_mx/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html">
+    <link rel="alternate" hreflang="fr-ca" href="http://www.cisco.com/c/fr_ca/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html">
+    <link rel="alternate" hreflang="en-us" href="http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html">
+    
+ 
+    <!--[if lt IE 9]><meta http-equiv="X-UA-Compatible" content="IE=8" /><![endif]-->
+    <!--[if gt IE 8]><meta http-equiv="X-UA-Compatible" content="IE=edge" /><![endif]-->
+    
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading -->
+    <meta http-equiv="cleartype" content="on">
+
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- start loading client context -->
+	<script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/jquery.min.js.tải xuống"></script>
+<script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/utils.min.js.tải xuống"></script>
+<script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/granite.min.js.tải xuống"></script>
+<script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/jquery.min.js(1).tải xuống"></script>
+<script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/shared.min.js.tải xuống"></script>
+<script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/underscore.min.js.tải xuống"></script>
+<script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/kernel.min.js.tải xuống"></script>
+<script type="text/javascript">
+    $CQ(function() {
+        CQ_Analytics.SegmentMgr.loadSegments("\x2Fetc\x2Fsegmentation");
+        CQ_Analytics.ClientContextUtils.init("\x2Fc\x2Fdnc\x2Fetc\x2Fclientcontext\x2Fdefault", "\x2Fcontent\x2Fen\x2Fus\x2Fsupport\x2Fdocs\x2Fwireless\x2F4400\x2Dseries\x2Dwireless\x2Dlan\x2Dcontrollers\x2F107457\x2Dload\x2Dbalancing\x2Dwlc");
+
+        
+    });
+</script>
+
+	<!-- end loading client context -->
+    <link rel="stylesheet" href="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/cisco-sans.min.css" type="text/css">
+<link rel="stylesheet" href="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/cisco-sans.min(1).css" type="text/css">
+<link rel="stylesheet" href="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/cisco-sans.min(2).css" type="text/css">
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/foundation.min.js.tải xuống"></script><style type="text/css"></style>
+
+    
+    <!--[if (IEMobile 7) | (lt IE 9)]>
+        <link rel="stylesheet" href="/etc/designs/cdc/clientlibs/responsive/css/responsive-ie.min.css" type="text/css">
+
+    <![endif]-->
+    <!--[if (!IE) | (gt IE 8)]><!-->
+        <link rel="stylesheet" href="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/responsive.min.css" type="text/css">
+
+    <!--<![endif]-->    
+    
+      
+    
+    
+    
+    
+    
+    
+<link rel="stylesheet" type="text/css" href="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/support-docs.css"><script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/cdcvalid.js.tải xuống"></script><link rel="stylesheet" type="text/css" href="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/megamenu.min.css"><script src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/cdtm.js.tải xuống" data-config-src="framework"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="etc/designs/cdc/fw/j/psa_typeahead_common" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/psa_typeahead_common.js.tải xuống"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="etc/designs/cdc/fw/w/cl/id30/id30v4" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/id30v4.js.tải xuống"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="http://www.cisco.com/web/fw/j/megamenu.min.js" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/megamenu.min.js.tải xuống"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="http://www.static-cisco.com/web/fw/tools/mbox/ad_c46_standard_offer.js" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/ad_c46_standard_offer.js.tải xuống"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="etc/designs/cdc/fw/j/config" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/config.js.tải xuống"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="//admin.brightcove.com/js/BrightcoveExperiences.js" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/BrightcoveExperiences.js.tải xuống"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/handlebars.min.js.tải xuống"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="//www.cisco.com/web/fw/ltc/tools/mbox/plugin_vp.js?2014January" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/plugin_vp.js.tải xuống"></script><script type="text/javascript" async="" charset="utf-8" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/utag.27.js.tải xuống" id="utag_cisco.support_27"></script><script type="text/javascript" async="" charset="utf-8" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/utag.58.js.tải xuống" id="utag_cisco.support_58"></script><script type="text/javascript" async="" charset="utf-8" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/utag.63.js.tải xuống" id="utag_cisco.support_63"></script><script type="text/javascript" async="" charset="utf-8" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/utag.64.js.tải xuống" id="utag_cisco.support_64"></script><script type="text/javascript" async="" charset="utf-8" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/utag.65.js.tải xuống" id="utag_cisco.support_65"></script><script type="text/javascript" async="" charset="utf-8" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/utag.67.js.tải xuống" id="utag_cisco.support_67"></script><script type="text/javascript" async="" charset="utf-8" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/utag.75.js.tải xuống" id="utag_cisco.support_75"></script><script type="text/javascript" async="" charset="utf-8" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/utag.76.js.tải xuống" id="utag_cisco.support_76"></script><script type="text/javascript" async="" charset="utf-8" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/utag.83.js.tải xuống" id="utag_cisco.support_83"></script><script type="text/javascript" async="" charset="utf-8" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/utag.147.js.tải xuống" id="utag_cisco.support_147"></script><script type="text/javascript" async="" charset="utf-8" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/utag.180.js.tải xuống" id="utag_cisco.support_180"></script><script type="text/javascript" async="" charset="utf-8" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/utag.190.js.tải xuống" id="utag_cisco.support_190"></script><script type="text/javascript" async="" charset="utf-8" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/utag.v.js.tải xuống" id="tiqapp"></script><script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/zsizzle.20110528.js.tải xuống"></script><script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/ztrack.20131013.js.tải xuống"></script><script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/8a32ad344fd6b7c8014fe0949ffa3b44"></script></head>
+
+<body id="wcq" class="fw-res cdc-support cdc-eot cdc-high-density cdc-full-width" bgcolor="#FFFFFF">
+    <!--[if IE 8]><ie xmlns="html5"><![endif]-->
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="fw-skiplinks">
+    <ul class="container">
+        <li><a href="http://www.cisco.com/c/en/us/index.html" tabindex="4">Home</a></li>
+        
+        <li><a href="http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html#fw-content">Skip to content</a></li>
+        
+        <li><a href="http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html#fw-footer" class="last">Skip to footer</a></li>
+    </ul>
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    
+    var cookieInformerMsg = "&nbsp;";
+    var cookieInformerBtn = "&nbsp;";
+    
+    if (typeof cdc === 'undefined') {cdc = {};}
+    if (typeof cdc.emp === 'undefined') {cdc.emp = {};}
+    cdc.emp['employees'] = "Employees";
+    cdc.emp['accessRequired'] = "Vpn Access Required";
+</script>
+<script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/masthead.js.tải xuống"></script>
+
+<style type="text/css">
+    #employee-mm-item.disabled .emphover.active:after {content: "Vpn Access Required";}
+</style>
+
+<!-- begin: masthead -->
+<header id="fw-masthead" data-owner="ID">
+    <div id="fw-banner">
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Start: utility links -->
+    <nav id="fw-utility" data-owner="ID">
+        <ul id="language">
+            <li class="no-pipe"><a href="http://www.cisco.com/c/m/en_us/worldwide/locator.html">Worldwide [change]</a></li>
+        </ul>
+
+        <ul id="actions" class="guest-actions">
+             
+                <li class="fw-login-util"><a href="http://www.cisco.com/c/login/index.html?referer=/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html">Log In</a></li>
+            
+
+            <li class="fw-account-util"><a href="http://www.cisco.com/web/siteassets/account/index.html?referer=http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html">Account</a></li>
+
+            
+                <li class="fw-register-util no-pipe"><a href="https://idreg.cloudapps.cisco.com/idreg/guestRegistration.do?referer=http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html">Register</a></li>
+            
+
+            
+
+            
+        </ul>
+
+        
+        <div id="mycisco"><a href="http://www.cisco.com/cisco/psn/web/workspace">My Cisco</a></div>
+        
+    </nav>
+<!-- End: utility links -->
+
+
+        <button id="fw-treenavbutton" data-treenav="/c/dam/global/en_us/framework/treenav.json">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <a id="fw-logo" href="http://www.cisco.com/c/en/us/index.html">
+            <div>Cisco.com Worldwide Home</div>
+        </a>
+
+        
+        <nav id="fw-areanav">
+            <ul>
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <li id="products-mm-item">
+ <a href="http://www.cisco.com/c/en/us/products/index.html">Products &amp; Services</a>
+ <a href="http://www.cisco.com/c/dam/global/en_us/framework/menu-content.js#products-mm-menu" class="mm-reflink">(menu)</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li id="support-mm-item">
+    <a href="http://www.cisco.com/c/en/us/support/index.html">Support</a>
+    <a href="http://www.cisco.com/c/dam/global/en_us/framework/menu-content.js#support-mm-menu" class="mm-reflink">(menu)</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <li id="ordering-mm-item">
+   <a href="http://www.cisco.com/c/en/us/buy.html">How to Buy</a>
+   <a href="http://www.cisco.com/c/dam/global/en_us/framework/menu-content.js#ordering-mm-menu" class="mm-reflink">(menu)</a>
+ </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <li id="training-mm-item">
+ <a href="http://www.cisco.com/c/en/us/training-events.html">Training &amp; Events</a>
+ <a href="http://www.cisco.com/c/dam/global/en_us/framework/menu-content.js#training-mm-menu" class="mm-reflink">(menu)</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <li id="partner-mm-item">
+ <a href="http://www.cisco.com/c/en/us/partners.html">Partners</a>
+ <a href="http://www.cisco.com/c/dam/global/en_us/framework/menu-content.js#partner-mm-menu" class="mm-reflink">(menu)</a>
+</li>
+
+
+
+            </ul>
+        </nav>
+        
+
+        <span class="search-entitlement">Guest</span>
+
+        <section id="fw-search" role="search">
+            <div id="search-drop-down">
+                <div id="auto-suggest"></div>
+            </div>
+            <form action="https://search.cisco.com/search" accept-charset="UTF-8" class="tabs-searchResultsForm searchGlobal" id="sitewidesearch" name="sitewidesearch" method="get">
+                <div>
+                    <label for="search-phrase" name="search" id="search">Search</label>
+                    <input type="search" name="query" class="inputSearchGlobal" id="search-phrase" placeholder="Search" value="" tabindex="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                    <button value="Submit" type="submit" id="fw-search-button" tabindex="3"><div></div></button>
+                </div>
+                <input type="hidden" value="enUS" name="locale">
+                <input type="hidden" value="Cisco" name="tab">
+            </form>
+        </section>
+        <button id="fw-searchbutton" tabindex="1"><div></div></button>
+    </div>
+</header>
+<!-- ends: masthead -->
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="fw-content" class="container grid">
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+<div class="row full blowout" data-owner="ID">
+	<div class="col full ">
+		
+		        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+<nav id="fw-breadcrumb" class="data-based" data-owner="ID">
+    <ul itemscope="" itemtype="http://schema.org/BreadcrumbList" class="is-ellipsed">
+        <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a itemprop="item" href="http://www.cisco.com/c/en/us/support/index.html"><span itemprop="name">Support</span><meta itemprop="position" content="1"></a><span class="caret"></span></li><li class="lipse" title="Show All Breadcrumbs"><a>...</a><span class="caret"></span></li><li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a itemprop="item" href="http://www.cisco.com/cisco/web/psa/default.html?mode=prod"><span itemprop="name">Product Support</span><meta itemprop="position" content="2"></a><span class="caret"></span></li><li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a itemprop="item" href="http://www.cisco.com/c/en/us/products/hw/tsd_products_support_end-of-sale_and_end-of-life_products_list.html"><span itemprop="name">End-of-Sale and End-of-Life Products</span><meta itemprop="position" content="3"></a><span class="caret"></span></li><li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a itemprop="item" href="http://www.cisco.com/c/en/us/support/wireless/4400-series-wireless-lan-controllers/tsd-products-support-eol-series-home.html"><span itemprop="name">Cisco 4400 Series Wireless LAN Controllers</span><meta itemprop="position" content="4"></a><span class="caret"></span></li><li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a itemprop="item" href="http://www.cisco.com/c/en/us/support/wireless/4400-series-wireless-lan-controllers/tsd-products-support-troubleshoot-and-alerts.html"><span itemprop="name">Troubleshoot and Alerts</span><meta itemprop="position" content="5"></a><span class="caret"></span></li><li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a itemprop="item" href="http://www.cisco.com/c/en/us/support/wireless/4400-series-wireless-lan-controllers/products-tech-notes-list.html"><span itemprop="name">Troubleshooting TechNotes</span><meta itemprop="position" content="6"></a><span class="caret"></span></li>
+    </ul>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+		        <h1 id="fw-pagetitle" class="" data-owner="ID">Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example</h1>
+		
+	</div>
+</div>
+
+     <!--googleon: index--><!--googleon: snippet-->
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="row twothirds-third visitedlinks">-->
+<!-- US49416 -->
+<!--<div class="row blowout twothirds-third visitedlinks">-->
+<div class="row blowout wide-narrow-v2 visitedlinks">
+    <!--end-->
+    <!--<div class="col two-third">-->
+    <div class="col wide-v2">
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    if (typeof(cdc) == "undefined") cdc={};
+    if (typeof(cdc.translations) == "undefined") cdc.translations={};
+
+</script>
+
+
+    <div class="docHeaderComponent">
+        <div class="linksRow">
+			
+			<div class="toolbar">			
+		
+
+						<div class="noprint language"><a href="http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html#"><button type="button" class="language-link anchor"><div class="toolbarIcon languageIcon"></div><label class="iconLabel">Translations</label></button></a></div>
+
+               
+				<div class="noprint downloadDocument"><button type="button" class="view-download-list-link anchor"><div class="toolbarIcon downloadIcon"></div><label class="iconLabel">Download</label></button></div>
+			
+			
+				<div class="noprint printDocument js-only"><button type="button" class="anchor printPage"><div class="toolbarIcon printIcon"></div><label class="iconLabel">Print</label></button></div>
+			
+			</div>
+
+        </div>
+            
+        		<script language="javascript">                    
+                    cdc.translations.map = "{ja-jp=http://www.cisco.com/c/ja_jp/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html, pt-br=http://www.cisco.com/c/pt_br/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html, ru-ru=http://www.cisco.com/c/ru_ru/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html, zh-cn=http://www.cisco.com/c/zh_cn/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html, es-mx=http://www.cisco.com/c/es_mx/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html, fr-ca=http://www.cisco.com/c/fr_ca/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html, en-us=http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html, x-default=http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html}";//storing the map for use in the JS
+                    cdc.translations.locale="en_us";
+        		</script>
+				<div class="availableLanguagesList cdc-expandPanel" style="display: none;">
+						<h3>Available Languages</h3>
+						  <ul id="langList">
+             
+                          <li><a href="http://www.cisco.com/c/ja_jp/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html">日本語</a></li><li><a href="http://www.cisco.com/c/pt_br/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html">Português (Brasil)</a></li><li><a href="http://www.cisco.com/c/ru_ru/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html">Русский</a></li><li><a href="http://www.cisco.com/c/zh_cn/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html"> 简体中文</a></li><li><a href="http://www.cisco.com/c/es_mx/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html">Español</a></li><li><a href="http://www.cisco.com/c/fr_ca/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html">Français (Canada)</a></li></ul> 
+                <button value="Close panel" title="Close panel" class="close-button"><span></span><span></span></button></div>
+           
+			
+            <div class="noprint panelRow">
+                <div class="download-list cdc-expandPanel" style="display: none;">
+                    <h3>Download Options</h3>
+                    <ul>
+                    
+                        <li>                            
+                            <div class="fileText">
+                                <a href="http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.pdf" class="download-pdf"><div class="fileIcon pdfIcon"></div>PDF</a>
+                                 
+                                <span class="docSize">(55.6 KB)</span>
+                                
+                                <br>
+                                <span class="description">View with Adobe Reader on a variety of devices</span>
+                            </div>
+                        </li>
+                    
+                    </ul>
+                <button value="Close panel" title="Close panel" class="close-button"><span></span><span></span></button></div>
+            </div>
+        
+
+		<div class="infobarClearFix">
+			<div class="infobar">				
+				
+					<div class="updatedDate"><span>Updated:</span>Aug 01, 2011</div>
+				
+				
+                    <div class="documentId"><span>Document ID:</span><a href="javascript:void(0)" onclick="return false;" class="makeNotALink">107457</a></div>
+
+              	 
+			</div>
+				
+		</div>
+    </div>
+
+
+
+    
+    
+    
+
+    
+    <script type="text/javascript">
+           if (typeof cdc === "undefined") cdc={};
+           if (typeof cdc.rc  === "undefined") cdc.rc={};
+    </script>
+    <script type="text/javascript">
+        // initialize dictionary for i18n
+        var pagelanguage = "en_US".replace("_","-");
+        var pagelocale = pagelanguage+".1";
+        _g.I18n.setLocale(pagelocale.toLowerCase());
+        _g.I18n.setUrlPrefix("/etc/designs/cdc/fw/w/responsive_components/eot/i18n/");
+    </script>
+    
+        
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+  
+    
+
+    
+<div id="eot-doc-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+  <link rel="stylesheet" type="text/css" href="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/support-responsive.css"> 
+  <!--[if IE 7]>
+	<link rel="stylesheet" type="text/css" href="/c/dam/en/us/support/docs/common/ie7.css">
+<![endif]--> 
+  <!--[if IE 8]>
+	<link rel="stylesheet" type="text/css" href="/c/dam/en/us/support/docs/common/ie8.css">
+<![endif]--> 
+  <!--googleoff: all--> 
+  <!-- AddThis Button BEGIN --> 
+  <script language="JavaScript"> loadjscssfile('/c/dam/en/us/support/docs/common/support-docs.css','css');</script> 
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script> 
+  <!--googleon: all-->
+  <!--PAWS:EndOFRelatedDocumentsSection--> 
+  <div id="tg-body">
+   <div id="support-toc"> 
+    <h2>Contents</h2> 
+    <div class="toc-h2"> 
+     <a href="http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html#intro">Introduction</a> 
+    </div> 
+    <div class="toc-h2"> 
+     <a href="http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html#prereq">Prerequisites</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html#req">Requirements</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html#hw">Components Used</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html#conventions">Conventions</a> 
+    </div> 
+    <div class="toc-h2"> 
+     <a href="http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html#backinfo">Aggressive Load-Balancing</a> 
+    </div> 
+    <div class="toc-h2"> 
+     <a href="http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html#conf">Configure Aggressive Load-Balancing</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html#cli">Command Line Interface</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html#gui">Graphical User Interface</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html#topicsub1">Example of Aggressive Load-Balancing</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html#c3">Important Notes on Aggressive Load-Balancing</a> 
+    </div> 
+    <div class="toc-h2"> 
+     <a href="http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html#related">Related Information</a>
+    </div> 
+   </div> 
+   <h2> <a name="intro">Introduction</a> </h2> 
+   <p>This document explains the aggressive load-balancing feature on Wireless LAN Controllers (WLCs) in versions 6.0.182.0 and earlier. </p> 
+   <h2> <a name="prereq">Prerequisites</a> </h2> 
+   <h3> <a name="req">Requirements</a> </h3> 
+   <p>Cisco recommends that you have knowledge of these topics:</p> 
+   <ul> 
+    <li> <p> Knowledge of how to configure the Wireless LAN Controller and lightweight access point (LAP) for basic operation.</p> </li> 
+    <li> <p> Basic knowledge of Lightweight Access Point Protocol (LWAPP).</p> </li> 
+   </ul> 
+   <h3> <a name="hw">Components Used</a> </h3> 
+   <p>The information in this document is based on these software and hardware versions: </p> 
+   <ul> 
+    <li> <p>Cisco 4400 Series Wireless LAN Controllers that run version 5.0.148.0</p> </li> 
+    <li> <p> Cisco Aironet 1250 Series Lightweight Access Points</p> </li> 
+    <li> <p>Cisco Aironet 802.11a/b/g (CB21AG) Wireless LAN Client adapters that run version 3.6</p> </li> 
+   </ul> 
+   <p>The information in this document was created from the devices in a specific lab environment. All of the devices used in this document started with a cleared (default) configuration. If your network is live, make sure that you understand the potential impact of any command.</p> 
+   <h3> <a name="conventions">Conventions</a> </h3> 
+   <p>Refer to <a href="http://www.cisco.com/en/US/tech/tk801/tk36/technologies_tech_note09186a0080121ac5.shtml">Cisco Technical Tips Conventions</a> for more information on document conventions.</p> 
+   <h2> <a name="backinfo">Aggressive Load-Balancing</a> </h2> 
+   <p> Aggressive load-balancing on the WLC allows the LAPs to load-balance wireless clients across APs in an LWAPP system. </p> 
+   <p>This feature can be used in order to load-balance clients across LAPs on a single controller. </p> 
+   <p>Aggressive load-balancing works at the association phase. If enabled and the conditions to load-balance are met, when a wireless client attempts to associate to a LAP, association response frames are sent to the client with an 802.11 response packet that includes status code 17. This code indicates that the AP is too busy to accept any more associations. </p> 
+   <p>It is the responsibility of the client to honor, process or discard that association response frame with reason code 17. Some clients ignore it, even though it is part of the 802.11 specification. The standard dictates that the client driver must look for another AP to connect to since it receives a "busy" message from the first AP it tries. Many clients do not do this and send the association request again. The client in question is allowed on to the wireless network upon subsequent attempts to associate. </p> 
+   <p>In WLC versions 6.0.182.0 and earlier, the controller only sends one association response frame with reason code 17 to the client. If the client decides to discard the reason code 17, the client can try the same AP again and this time the AP allows the client to complete the association.</p> 
+   <p>If the client honors the association response status code 17, the client then attempts to associate to a different AP. For example, if load-balancing is enabled and the load-balancing window is configured as five clients, when a sixth client tries to associate to the AP, the client receives an 802.11 Association Response frame with status code 17, which indicates that the AP is busy.</p> 
+   <h2> <a name="conf">Configure Aggressive Load-Balancing</a> </h2> 
+   <p>Aggressive load-balancing can be configured through the CLI or the GUI on the Wireless LAN Controller. </p> 
+   <h3> <a name="cli">Command Line Interface</a> </h3> 
+   <p>In order to enable or disable aggressive load-balancing through the CLI, complete these steps:</p> 
+   <ol type="1"> 
+    <li> <p>Issue this command:</p> 
+     <blockquote> 
+      <pre><b>config load-balancing status</b> {enable | disable}</pre> 
+     </blockquote> </li> 
+    <li> <p> Issue this command in order to configure the window size: </p> 
+     <blockquote> 
+      <pre><b>configure load-balancing window</b> &lt;size&gt;</pre> 
+     </blockquote> <p> <b>Note:&nbsp;</b>The size of the window can be from zero to 20. </p> </li> 
+   </ol> 
+   <h3> <a name="gui">Graphical User Interface</a> </h3> 
+   <p>In order to configure aggressive load-balancing through the GUI, complete these steps:</p> 
+   <ol type="1"> 
+    <li> <p>From the controller GUI, click <b>Controller &gt; General</b> in order to open the <b>General</b> page.</p> </li> 
+    <li> <p>From the <b>Aggressive Load-Balancing</b> drop-down box, choose either <b>Enabled</b> or <b>Disabled</b> in order to configure this feature.</p> <p> <a href="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/107457-load-balancing-wlc-01.gif" class="show-image-alone" title="Related image, diagram or screenshot."><img alt="load_balancing_wlc-01.gif" border="0" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/107457-load-balancing-wlc-01.gif" usemap=""></a> </p> </li> 
+    <li> <p>Click <b>Apply</b>. </p> </li> 
+   </ol> 
+   <h3> <a name="topicsub1">Example of Aggressive Load-Balancing</a> </h3> 
+   <p>The window setting controls when aggressive load-balancing starts. With a window setting of five, which is the default in version 6.0.182.0 or earlier, all clients after the sixth client are load-balanced. </p> 
+   <p>Here is an example of aggressive load-balancing:</p> 
+   <ul> 
+    <li> <p>Two APs, AP1 and AP2, have two and three clients associated to each, respectively. </p> </li> 
+    <li> <p>Load balancing is enabled, and the window is set to zero.</p> </li> 
+   </ul> 
+   <p>This information is obtained from debug on the controller:</p> 
+   <blockquote> 
+    <pre>*May 19 13:10:33.023: 00:40:96:b4:8b:ff 
+   Load Balancing mobile 00:40:96:b4:8b:ff 802.11bg minimum users 0, <b>window 0</b>
+*May 19 13:10:33.023: 00:40:96:b4:8b:ff 
+   Load Balancing mobile 00:40:96:b4:8b:ff on AP 00:17:df:9f:0f:e0(1) band 1 has 0 users 
+- Good: rssi (antenna-A -31) (antenna-B -57), snr = 57
+*May 19 13:10:33.023: 00:40:96:b4:8b:ff 
+   <b>Load Balancing mobile 00:40:96:b4:8b:ff on AP 00:17:df:9e:ad:d0(1) band 1 has 2 users 
+-  Bad: rssi (antenna-A -37) (antenna-B -64), snr = 38</b>
+*May 19 13:10:33.023: 00:40:96:b4:8b:ff 
+   <b>Load Balancing mobile 00:40:96:b4:8b:ff could not find acceptable 802.11a candidate 
+-- defaulting all</b>
+*May 19 13:10:33.023: 00:40:96:b4:8b:ff 
+   <b>Load Balancing mobile 00:40:96:b4:8b:ff is denied association with AP </b>
+<b>00:17:df:9e:ad:d0(1) (count=1)</b>
+</pre> 
+   </blockquote> 
+   <p>If you debug on a specific client MAC address, this appears:</p> 
+   <blockquote> 
+    <pre>*May 19 13:14:13.432: 00:40:96:b4:8b:ff 
+   <b>Sending Assoc Response to station on BSSID 00:17:df:9f:0f:e0 (status 17)</b>
+</pre> 
+   </blockquote> 
+   <p>If the client does not honor the status code 17, and tries again on the original AP, this appears: </p> 
+   <blockquote> 
+    <pre>*May 19 13:14:14.042: 00:40:96:b4:8b:ff 
+   <b>Load Balancing mobile 00:40:96:b4:8b:ff is permitted to associate with AP 
+00:17:df:9f:0f:e0(1) ( on RETRY count=1)</b>
+</pre> 
+   </blockquote> 
+   <p>You can issue this command in order to verify the load-balancing configuration:</p> 
+   <blockquote> 
+    <pre>(Cisco Controller) &gt;<b>show load-balancing</b>
+
+Aggressive Load Balancing........................ <b>Disabled</b>
+Aggressive Load Balancing Window................. <b>10 clients</b>
+</pre> 
+   </blockquote> 
+   <p> <b>Note:&nbsp;</b>When you use Cisco 7921 and 7920 wireless IP phones with controllers, make sure that aggressive load-balancing is disabled for each controller. Otherwise, the initial roam attempt by the phone can fail, which causes a disruption in the audio path.</p> 
+   <h3> <a name="c3">Important Notes on Aggressive Load-Balancing</a> </h3> 
+   <p>Here are a few additional things to consider:</p> 
+   <ul> 
+    <li> <p> A client that has already been authenticated and associated is never removed from the system as a result of aggressive load-balancing. Load-balancing only happens at the association phase.</p> </li> 
+    <li> <p>This feature is implemented on a per-controller basis. This means that APs in the same geographic area must all logically connect back to the same WLC if Aggressive load-balancing is desired. </p> </li> 
+   </ul> 
+   <p>Load-balancing will not take place if:</p> 
+   <ul> 
+    <li> <p>The threshold load-balancing window is not exceeded. That is, if the AP requested by the client is a valid candidate AP (current user count &lt;= window + min users).</p> </li> 
+    <li> <p>The client sends a reassociation request to an AP which it was associated to previously.</p> </li> 
+   </ul> 
+   <h2> <a name="related">Related Information</a> </h2> 
+   <ul> 
+    <li> <b> <a href="http://www.cisco.com/en/US/tech/tk722/tk721/technologies_tech_note09186a00807a85b8.shtml?referring_site=bodynav">AP Load Balancing and AP Fallback in Unified Wireless Networks</a> </b> </li> 
+    <li> <b> <a href="http://www.cisco.com/cisco/web/support/index.html?referring_site=bodynav">Technical Support &amp; Documentation - Cisco Systems</a> </b> </li> 
+   </ul> 
+   <p xmlns:cal="xalan://java.util.GregorianCalendar"></p> 
+   <p xmlns:cal="xalan://java.util.GregorianCalendar"></p> 
+   <p xmlns:cal="xalan://java.util.GregorianCalendar"></p> 
+   <font xmlns:cal="xalan://java.util.GregorianCalendar" size="-1"> </font> 
+  </div>
+  <!--[if IE 7]>
+	<link rel="stylesheet" type="text/css" href="/c/dam/en/us/support/docs/common/ie7.css">
+<![endif]--> 
+  <!--[if IE 8]>
+	<link rel="stylesheet" type="text/css" href="/c/dam/en/us/support/docs/common/ie8.css">
+<![endif]--> 
+  <script type="text/javascript">
+function showfeedback(divid){
+   document.getElementById(divid).style.visibility="visible";
+   document.getElementById(divid).className = "show";
+}function hidefeedback(divid){
+   document.getElementById(divid).style.visibility="hidden";
+   document.getElementById(divid).className = "hide";
+}</script> 
+  <script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/parseXml.js.tải xuống"></script> 
+  <script language="JavaScript"> loadjscssfile('/c/dam/en/us/support/docs/common/support-docs.css','css');</script> 
+  <meta http-equiv="X-UA-Compatible" content="IE=9"> 
+  <!-- PIDLMD -->
+  <!-- PIDLMD --> 
+  <script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/dest_pg_metricsrule.js.tải xuống"></script>
+  <script type="text/javascript">NTPT_PGEXTRA = 'status=Anonymous';cdc.util.checkLogin(function(val) {if ( val === "valid") {NTPT_PGEXTRA = 'status=LoggedIn';}});</script>  
+ 
+
+
+
+
+
+</div>
+
+
+
+<script type="text/javascript">
+   jQuery(document).ready(function() {
+     if (typeof(cdc) == "undefined") cdc={};
+        if (typeof(cdc.eot) == "undefined") cdc.eot={};
+        cdc.eot.isEot = true; 
+        if(cdc.eot.isEot){
+            var linkItemsLen=jQuery("#eot-doc-wrapper link[rel='stylesheet']").length;
+            jQuery("#eot-doc-wrapper link[rel='stylesheet']").each(function(){
+            
+              var linkTag=jQuery(this);
+              var hrefVal=jQuery(linkTag).attr("href");
+              
+              
+              if(hrefVal!=undefined && hrefVal.indexOf("support-responsive.css")==-1 && hrefVal.indexOf("_responsive.css")==-1){
+                  var fileName=hrefVal.substr(hrefVal.lastIndexOf("/")+1,hrefVal.length).split(".css")[0];
+                  var filePath="/etc/designs/cdc/transformation/";
+                  
+                  if(fileName=="ccimr"){
+                      fileName="techdocs_responsive";
+                  }else if(fileName=="support-docs"){
+                      fileName="support-responsive";
+                  }else if(fileName=="framework"){
+                      fileName="responsiveframework";
+                  }else if(fileName=="dcmt"){
+                      fileName="wemdcmt_responsive";
+                  }
+                  else{
+                      fileName+="_responsive";
+                  }
+                  jQuery(linkTag).attr("href",filePath+fileName+".css");
+               }
+               
+	         if(hrefVal.indexOf("support-responsive.css")>-1){
+	             jQuery(linkTag).attr("href","/etc/designs/cdc/transformation/support-responsive.css");
+	         }
+               
+          });
+               jQuery("#eot-doc-wrapper > table").wrap("<div></div>");
+               jQuery("#eot-doc-wrapper table").parent().attr("style","overflow-x:auto !important");
+        } 
+   });    
+</script>
+    
+
+
+    </div>
+
+      
+   <!--<div class="col third">-->
+    <div class="col narrow-v2">
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rightRailComponent">
+
+      <!-- condition for support RR components -->
+
+    
+
+			<!-- TAC image component mandatory -->
+			<div style="display: none;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="tac-image">
+
+
+    
+    
+    <script type="text/javascript">
+       document.getElementsByClassName('tac-image')[0].parentElement.style.display="none";
+    </script>
+    
+
+
+
+</div>
+
+</div>
+
+			<div class="showComponent">
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="eot-authors">
+ 
+  <h3 class="eot-authors-heading">Contributed by Cisco Engineers</h3>
+  <ul>
+    
+    
+    
+  </ul>
+</div>
+
+
+
+			</div>
+
+			<!-- mandatory -->
+			<div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="eot-feedback">
+  <h3>Was this Document Helpful?</h3>
+  <span class="eot-feedback-btnwrap">
+    <button class="eot-feedback-btn eot-feedback-btn-yes">Yes</button>
+    <button class="eot-feedback-btn eot-feedback-btn-no">No</button>
+  </span>
+  <span lang="en" class="eot-feedback-olwrap">
+      <a href="javascript: void(0)" class="eot-feedback-ol" onclick="window.open(&#39;https://secure.opinionlab.com/ccc01/o.asp?id=fJgVHPJv&amp;referer=&#39; + location.href + &#39;&amp;resize=false&#39;, &#39;feedback&#39;, &#39;width=550, height=460, scrollbars=1, menubar=1, resizable=1&#39;); return false;">
+    <!--<a href="javascript: void(0)" class="eot-feedback-ol" onclick="window.open('https://secure.opinionlab.com/ccc01/o.asp?id=Cisco_Opinionlab_Id_Support&referer=' + location.href + '&resize=false', 'feedback', 'width=550, height=460, scrollbars=1, menubar=1, resizable=1'); return false;">-->
+      <img id="feedback_img" border="0" style="cursor: pointer;" title="Feedback" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/sm_0000EE_oo1.gif">Feedback</a>
+  </span>
+</div>
+
+</div>
+			
+			<div class="showComponent" style="display: block;">
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="eot-vav"><h3>Viewers of This Document Also Viewed</h3>
+  <ul>
+  <li class="vavlistitems-show"><a href="http://www.cisco.com/c/en/us/td/docs/wireless/controller/7-4/configuration/guides/consolidated/b_cg74_CONSOLIDATED/b_cg74_CONSOLIDATED_chapter_01000.html?referring_site=RE&amp;pos=1&amp;page=http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html">Configuring Aggressive Load Balancing</a></li><li class="vavlistitems-show"><a href="http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/113160-aggressive-load-balancing-clients-00.html?referring_site=RE&amp;pos=2&amp;page=http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html">Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.188.0 and Later Configuration Example</a></li><li class="vavlistitems-show"><a href="http://www.cisco.com/c/en/us/td/docs/wireless/technology/wlc/82463-wlc-config-best-practice.html?referring_site=RE&amp;pos=3&amp;page=http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html">Cisco Wireless LAN Controller Configuration Best Practices</a></li><li class="morelistitems vavlistitems-hide"><a href="http://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-mobile/71963-apload-apfall-uwn.html?referring_site=RE&amp;pos=4&amp;page=http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html">AP Load Balancing and AP Fallback in Unified Wireless Networks</a></li><li class="eot-vavButtonListItem"><button class="eot-vavButton anchor">+ <span>Show 1 More</span></button></li></ul>
+</div>
+			</div>
+			
+			<div class="showComponent">
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="eotLetUsHelp">
+    <h3>Let Us Help</h3>
+    <ul>
+         <li><a id="eotLetUsHelpProdDocUrl" href="https://mycase.cloudapps.cisco.com/start?prodDocUrl=http://www.cisco.com/c/en/us/support/docs/wireless/4400-series-wireless-lan-controllers/107457-load-balancing-wlc.html">Open a Support Case</a><img src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/icon_lock_small.png" alt="login required"></li>
+        <li>(Requires a <a href="http://www.cisco.com/c/en/us/services/order-services.html">Cisco Service Contract</a>)</li>
+    </ul>
+</div>
+
+
+<script>
+    jQuery(document).ready(function() {
+        var getURL=jQuery("#eotLetUsHelpProdDocUrl").attr("href")+jQuery(location).attr('href');
+		jQuery("#eotLetUsHelpProdDocUrl").attr("href",getURL);
+    });
+</script>
+
+
+			</div>
+
+			<!-- mandatory -->
+			<div id="eotRightRailMBox"><!--MBox-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/clientLib.min.js.tải xuống"></script><style>.mboxDefault { visibility:hidden; }</style>
+<script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/clientLib.min.js(1).tải xuống"></script>
+
+<link rel="stylesheet" href="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/clientLib.min.css" type="text/css">
+
+
+<!-- ??:????:V?.?.? -->
+<div id="mbox-polydor">
+	<div id="dg-polydor-container" style="">
+		<!-- DIV for Demand Gen 2.0 Offer -->
+		<div style="visibility: visible; display: block;" id="mboxImported-default-us_polydor_small-0"><div id="mboxClick-us_polydor_small" onclick="mboxFactories.get(&#39;default&#39;).getSignaler().signal(&#39;click&#39;, &#39;us_polydor_small-clicked&#39;, &#39;mboxTarget=66908&#39;)"><!-- Offer Code Rev Date: 2011-Sep-16 -->
+<!-- BEGIN Component C46: HTML Banner -->
+<div id="ctDiv"></div>
+<div id="ad_c46" class="clb c46-pilot blend c46v4" style="display: block;">
+  <div class="copy">
+    <h3>Ready to Replace an Old Switch?</h3>
+    <p>Upgrade your network and get discounts on replacement switches and support services</p>
+  </div>
+  <div class="cta">
+    <a id="ad_ctalink" class="dg-cta" href="http://www.cisco.com/c/en/us/support/web/dg/migration-switches.html"><b><i>Learn How</i></b></a>
+  </div>
+</div> <!-- END Component C46: HTML Banner -->
+<br><br>
+<script type="text/javascript">
+function getMboxParam(_sWhich){
+  var arr = mboxCurrent.getParameters();
+  for (i=0;i<arr.length;i++){ if(arr[i].indexOf(_sWhich) != -1){return (arr[i].split("=")[1]); }}
+  return "";
+}
+var mboxname = mboxCurrent.getName();
+var mboxType = getMboxParam('type');
+jQuery(function(){
+  cdc.includer.loadJs(
+    'http://www.static-cisco.com/web/fw/tools/mbox/ad_c46_standard_offer.js', 
+    {"callback": function(){cdc.mbox.render({"odAdAttribute":"US-EN-SWT-P-EOLSCHSUPPORT2-GEN","odAdId":"US-EN-SWT-P-EOLSCHSUPPORT2-GEN","odElemType":"GRSoffer", "odCampaign":"Support Polydor Live","odMboxName":mboxname,"odMboxType":mboxType})}}
+  )
+});
+</script></div><script type="text/javascript">window.ttMETA=(typeof(window.ttMETA)!='undefined')?window.ttMETA:[];window.ttMETA.push({'mbox':'us_polydor_small','campaign':'Support Polydor Live','experience':'EOLSCHSUPPORT2','offer':'US-EN-SWT-P-EOLSCHSUPPORT2-GEN'});window.ttMBX=function(x){var mbxList=[];for(i=0;i<ttMETA.length;i++){if(ttMETA[i].mbox==x.getName()){mbxList.push(ttMETA[i])}}return mbxList[x.getId()]}</script><script type="text/javascript">
+jQuery(document).ready(function() {
+  cdc.util.ensureNamespace("cdc.mbox"); // safe way to make sure cdc.mbox exists
+  cdc.mbox.adDefaultIntervalUnits = "h"; //d = days, h = hours, m=minutes
+  cdc.mbox.adDefaultInterval = 24;
+  if('' != ""){ cdc.mbox.adDefaultInterval = 24; }
+  if('' != "") { cdc.mbox.adDefaultIntervalUnits = 'h'; }
+  cdc.mbox.adParams = new Array();
+
+  cdc.mbox.authState = '';
+  cdc.mbox.vp_profileTester = "loaded";//'';
+  cdc.mbox.lastVPUpdate = 'Fri Feb 17 2017 22:33:09 GMT+0700 (SE Asia Standard Time)';
+
+  if(typeof(cdc.mbox.ajaxServer) == "undefined"){ cdc.mbox.ajaxServer = "http://" + location.host + "/cisco/web/cdc/virtualprofile?groupName=target"; }
+  jQuery(function(){
+    cdc.includer.loadJs('/web/fw/ltc/tools/mbox/plugin_vp.js?2014January',{
+     callback: function(){ 
+      cdc.util.checkLogin(function(val){
+        cdc.mbox.adAuthVar = (val == 'valid' ? true : false);
+      });
+
+      if(typeof(cdc.mbox.ad_ReadJSON) != "undefined"){
+        cdc.mbox.ad_ReadJSON();
+      }
+      else if(typeof(cdc.mbox.ad_ReadVPInfo) != "undefined"){
+        cdc.mbox.ad_ReadVPInfo();
+      }
+     }
+    });
+  });
+});
+</script></div>
+		<script type="text/javascript">
+			var polydorDG = new mboxPolydor();
+			mboxCreate("us_polydor_small", polydorDG.mboxSegment);
+			jQuery(document).ready(function() { jQuery("#dg-polydor-container").show(); });
+		</script><div id="mboxMarker-default-us_polydor_small-0" style="visibility:hidden;display:none">&nbsp;</div><script src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/standard" language="JavaScript"></script>
+	</div>
+</div> <!-- #mbox-polydor -->
+<!--MBox--></div>
+
+			<div class="showComponent">
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script language="javascript">
+    if (typeof(cdc) == "undefined") cdc={};
+    if (typeof(cdc.rc) == "undefined") cdc.rc={};
+    cdc.rc.concept_name = "Cisco 4400 Series Wireless LAN Controllers";//storing the primary concept name for use in the JS
+    cdc.rc.locale_info = "en_us";//storing the page locale for use in the JS
+</script>
+
+<div id="eotCommunityDisc">
+    <h3 style="display: block;">Related Support Community Discussions</h3>
+    <div class="discItems"><ul class="open">                             <li><span></span>                                                <div>                            <a href="https://supportforums.cisco.com/document/60171/cisco-4400-series-wireless-lan-controllers-open-bug-status" class="title">Cisco 4400 Series Wireless LAN Controllers- open Bug Status</a>                            <p class="modified-date">Last Reply 5 years ago</p>                            <p class="community">in <a href="https://supportforums.cisco.com/community/5956/getting-started-wireless">Getting Started with Wireless</a></p>                        </div>                      </li>                             <li><span></span>                                                <div>                            <a href="https://supportforums.cisco.com/discussion/10463001/lms-30-cisco-4400-series-wireless-lan-controler-model-4402" class="title">LMS 3.0--- cisco 4400 series, wireless lan controler MODEL 4402.</a>                            <p class="modified-date">Last Reply 8 years ago</p>                            <p class="community">in <a href="https://supportforums.cisco.com/community/5931/network-management">Network Management</a></p>                        </div>                      </li>                             <li><span></span>                                                <div>                            <a href="https://supportforums.cisco.com/discussion/10839676/ciscoworks-wlc" class="title">CiscoWorks-WLC</a>                            <p class="modified-date">Last Reply 6 years ago</p>                            <p class="community">in <a href="https://supportforums.cisco.com/community/5906/security-and-network-management">Security and Network Management</a></p>                        </div>                      </li></ul><p class="supportCommunityLink"><a href="https://supportforums.cisco.com/index.jspa">Cisco Support Community</a></p></div>   
+</div>
+			</div>
+			
+			<div class="showComponent">
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="eot-tdatp">
+    <h3>This Document Applies to These Products</h3>
+    <ul class="eot-tdatp-list">
+       
+         <li><a href="http://www.cisco.com/c/en/us/support/wireless/2000-series-wireless-lan-controllers/tsd-products-support-eol-series-home.html">2000 Series Wireless LAN Controllers</a></li>
+       
+         <li><a href="http://www.cisco.com/c/en/us/support/wireless/2100-series-wireless-lan-controllers/tsd-products-support-eol-series-home.html">2100 Series Wireless LAN Controllers</a></li>
+       
+         <li><a href="http://www.cisco.com/c/en/us/support/wireless/4100-series-wireless-lan-controllers/tsd-products-support-eol-series-home.html">4100 Series Wireless LAN Controllers</a></li>
+       
+         <li><a href="http://www.cisco.com/c/en/us/support/wireless/4400-series-wireless-lan-controllers/tsd-products-support-eol-series-home.html">4400 Series Wireless LAN Controllers</a></li>
+       
+         <li class="eot-tdatp-lastitemlink"><a href="http://www.cisco.com/c/en/us/support/wireless/aironet-1000-series/tsd-products-support-eol-series-home.html">Aironet 1000 Series</a></li>
+       
+         <li style="display: none;"><a href="http://www.cisco.com/c/en/us/support/wireless/aironet-1130-ag-series/tsd-products-support-series-home.html">Aironet 1130 AG Series</a></li>
+       
+         <li style="display: none;"><a href="http://www.cisco.com/c/en/us/support/wireless/aironet-1200-series/tsd-products-support-series-home.html">Aironet 1200 Series</a></li>
+       
+         <li style="display: none;"><a href="http://www.cisco.com/c/en/us/support/wireless/aironet-1240-ag-series/tsd-products-support-series-home.html">Aironet 1240 AG Series</a></li>
+       
+         <li style="display: none;"><a href="http://www.cisco.com/c/en/us/support/wireless/aironet-1250-series/tsd-products-support-series-home.html">Aironet 1250 Series</a></li>
+       
+         <li style="display: none;"><a href="http://www.cisco.com/c/en/us/support/wireless/aironet-wireless-lan-client-adapters/tsd-products-support-series-home.html">Aironet Wireless LAN Client Adapters</a></li>
+       
+         <li style="display: none;"><a href="http://www.cisco.com/c/en/us/support/wireless/catalyst-3750-series-integrated-wireless-lan-controllers/tsd-products-support-eol-series-home.html">Catalyst 3750 Series Integrated Wireless LAN Controllers</a></li>
+       
+     </ul>
+     <button class="eot-show5" showing5="1">+ <span>Show All 11 Products</span></button>
+  </div>
+
+    
+
+
+
+
+			</div>
+
+    		<div class="showComponent">
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="shortUrlComponent" style="display: none;">
+        <script type="text/javascript">
+        			document.getElementById('shortUrlComponent').style.display="none";
+        		  </script>
+
+        
+    </div>
+    
+
+
+			</div>
+
+    	
+			<div class="showClass">
+   				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="share ">
+    <h3>Share</h3>
+    <ul>
+        
+            <li>
+                <a href="http://twitter.com/share?text=Aggressive+Load+Balancing+on+Wireless+LAN+Controllers+%28WLCs%29+Release+6.0.182.0+and+Earlier+Configuration+Example+-+Cisco&amp;url=http%3A%2F%2Fwww.cisco.com%2Fc%2Fen%2Fus%2Fsupport%2Fdocs%2Fwireless%2F4400-series-wireless-lan-controllers%2F107457-load-balancing-wlc.html" class="channels icons-twitter" data-config-metrics-group="responsive share component" data-config-metrics-title="share" data-config-metrics-item="twitter"></a>
+            </li>
+        
+            <li>
+                <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fwww.cisco.com%2Fc%2Fen%2Fus%2Fsupport%2Fdocs%2Fwireless%2F4400-series-wireless-lan-controllers%2F107457-load-balancing-wlc.html&amp;title=Aggressive+Load+Balancing+on+Wireless+LAN+Controllers+%28WLCs%29+Release+6.0.182.0+and+Earlier+Configuration+Example+-+Cisco" class="channels icons-linkedin" data-config-metrics-group="responsive share component" data-config-metrics-title="share" data-config-metrics-item="linkedin"></a>
+            </li>
+        
+            <li>
+                <a href="https://www.facebook.com/dialog/share_open_graph?app_id=156494687694418&amp;display=page&amp;action_type=og.likes&amp;action_properties=%7B%22object%22%3A%22http%3A%2F%2Fwww.cisco.com%2Fc%2Fen%2Fus%2Fsupport%2Fdocs%2Fwireless%2F4400-series-wireless-lan-controllers%2F107457-load-balancing-wlc.html%22%7D&amp;redirect_uri=http%3A%2F%2Fwww.cisco.com%2Fc%2Fen%2Fus%2Fsupport%2Fdocs%2Fwireless%2F4400-series-wireless-lan-controllers%2F107457-load-balancing-wlc.html" class="channels icons-facebook" data-config-metrics-group="responsive share component" data-config-metrics-title="share" data-config-metrics-item="facebook"></a>
+            </li>
+        
+            <li>
+                <a href="https://plus.google.com/share?url=http%3A%2F%2Fwww.cisco.com%2Fc%2Fen%2Fus%2Fsupport%2Fdocs%2Fwireless%2F4400-series-wireless-lan-controllers%2F107457-load-balancing-wlc.html" class="channels icons-googleplus" data-config-metrics-group="responsive share component" data-config-metrics-title="share" data-config-metrics-item="googleplus"></a>
+            </li>
+        
+            <li>
+                <a href="mailto:?subject=Aggressive%20Load%20Balancing%20on%20Wireless%20LAN%20Controllers%20(WLCs)%20Release%206.0.182.0%20and%20Earlier%20Configuration%20Example%20-%20Cisco&amp;body=This%20document%20explains%20the%20Aggressive%20load%20balancing%20feature%20on%20Wireless%20LAN%20Controllers.%0D%0Ahttp%3A%2F%2Fwww.cisco.com%2Fc%2Fen%2Fus%2Fsupport%2Fdocs%2Fwireless%2F4400-series-wireless-lan-controllers%2F107457-load-balancing-wlc.html" class="channels icons-email" data-config-metrics-group="responsive share component" data-config-metrics-title="share" data-config-metrics-item="email"></a>
+            </li>
+        
+    </ul>
+</div>
+
+<script type="text/javascript">
+    if (typeof cdc === "undefined") cdc={};
+    if (typeof cdc.rc === "undefined") cdc.rc={};
+    if (typeof cdc.rc.share == "undefined") cdc.rc.share={};
+    cdc.rc.share.defaultUrls = {};
+    cdc.rc.share.defaultUrls.TwitterCustom = "http://twitter.com/share?text=Aggressive+Load+Balancing+on+Wireless+LAN+Controllers+%28WLCs%29+Release+6.0.182.0+and+Earlier+Configuration+Example+-+Cisco&url=http%3A%2F%2Fwww.cisco.com%2Fc%2Fen%2Fus%2Fsupport%2Fdocs%2Fwireless%2F4400-series-wireless-lan-controllers%2F107457-load-balancing-wlc.html";
+    cdc.rc.share.defaultUrls.LinkedinCustom = "http://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwww.cisco.com%2Fc%2Fen%2Fus%2Fsupport%2Fdocs%2Fwireless%2F4400-series-wireless-lan-controllers%2F107457-load-balancing-wlc.html&title=Aggressive+Load+Balancing+on+Wireless+LAN+Controllers+%28WLCs%29+Release+6.0.182.0+and+Earlier+Configuration+Example+-+Cisco"; 
+    cdc.rc.share.defaultUrls.FacebookCustom = "https://www.facebook.com/dialog/share_open_graph?app_id=156494687694418&display=page&action_type=og.likes&action_properties=%7B%22object%22%3A%22http%3A%2F%2Fwww.cisco.com%2Fc%2Fen%2Fus%2Fsupport%2Fdocs%2Fwireless%2F4400-series-wireless-lan-controllers%2F107457-load-balancing-wlc.html%22%7D&redirect_uri=http%3A%2F%2Fwww.cisco.com%2Fc%2Fen%2Fus%2Fsupport%2Fdocs%2Fwireless%2F4400-series-wireless-lan-controllers%2F107457-load-balancing-wlc.html"; 
+    cdc.rc.share.defaultUrls.GoogleplusCustom = "https://plus.google.com/share?url=http%3A%2F%2Fwww.cisco.com%2Fc%2Fen%2Fus%2Fsupport%2Fdocs%2Fwireless%2F4400-series-wireless-lan-controllers%2F107457-load-balancing-wlc.html"; 
+    cdc.rc.share.defaultUrls.EmailCustom = "mailto:?subject=Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco&body=http%3A%2F%2Fwww.cisco.com%2Fc%2Fen%2Fus%2Fsupport%2Fdocs%2Fwireless%2F4400-series-wireless-lan-controllers%2F107457-load-balancing-wlc.html";
+    // email - cull description from meta tag data
+    if (jQuery('meta[name=description]').length !== 0) {
+        jQuery('.channels.icons-email').each(function() {
+            // if default is the one used, they haven't overwritten it
+            if (cdc.rc.share.defaultUrls.EmailCustom === "mailto:?subject=Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco&body=http%3A%2F%2Fwww.cisco.com%2Fc%2Fen%2Fus%2Fsupport%2Fdocs%2Fwireless%2F4400-series-wireless-lan-controllers%2F107457-load-balancing-wlc.html") {
+                var email_description = jQuery('meta[name=description]').attr('content') + "\r\n";
+                jQuery(this).attr('href', jQuery(this).attr('href').replace('&body=', '&body=' +  encodeURIComponent(email_description) ));
+            }
+        });
+    };
+</script>
+
+<!-- end - responsive share component -->
+
+
+
+
+
+            </div>
+    	
+
+    
+
+
+    
+
+</div>
+
+
+    </div>
+    
+</div>
+
+     <!--googleoff: index--><!--googleoff: snippet-->
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+       
+       <div class="row"><div class="col">   
+       
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Responsive Fat Footer -->
+<nav id="fw-fatfooter">
+    <div>
+	    <h4><a href="http://www.cisco.com/c/en/us/solutions/index.html">Information For </a></h4>
+	    <ul>
+			<li><a href="http://www.cisco.com/c/en/us/solutions/small-business.html">Small Business</a></li>
+		    <li><a href="http://www.cisco.com/c/en/us/solutions/midsize/overview.html">Midsize Business</a></li>
+			<li><a href="http://www.cisco.com/c/en/us/solutions/service-provider/index.html">Service Provider</a></li>
+	    </ul>
+		<h4><a href="http://www.cisco.com/c/en/us/solutions/industries.html">Industries</a>
+			<div class="submenu-container">
+				<button class="menu-button" value="Open Industries submenu" title="Open Industries submenu"><span></span></button>
+				<div class="fatfooter-submenu">
+				    <ul>
+
+<li><a href="http://www.cisco.com/c/en/us/solutions/industries/automotive.html">Automotive</a></li>
+<li><a href="http://www.cisco.com/c/en/us/solutions/industries/consumer-packaged-goods.html">Consumer Packaged Goods</a></li>
+
+<li><a href="http://www.cisco.com/c/en/us/solutions/industries/education.html">Education</a></li>
+
+<li><a href="http://www.cisco.com/c/en/us/solutions/industries/energy.html">Energy</a></li>
+
+<li><a href="http://www.cisco.com/c/en/us/solutions/industries/financial-services.html">Financial Services</a></li>
+
+<li><a href="http://www.cisco.com/c/en/us/solutions/industries/government.html">Government</a></li>
+
+<li><a href="http://www.cisco.com/c/en/us/solutions/industries/healthcare.html">Healthcare</a></li>
+
+<li><a href="http://www.cisco.com/c/en/us/solutions/industries/hospitality.html">Hospitality</a></li>
+
+<li><a href="http://www.cisco.com/c/en/us/solutions/industries/industrial-solutions.html">Industrial</a></li>
+
+<li><a href="http://www.cisco.com/c/en/us/solutions/industries/life-sciences.html">Life Sciences</a></li>
+
+				    </ul>
+				    <ul>
+
+<li><a href="http://www.cisco.com/c/en/us/solutions/industries/manufacturing.html">Manufacturing</a></li>
+
+<li><a href="http://www.cisco.com/c/en/us/solutions/industries/materials-mining.html">Materials and Mining</a></li>
+<li><a href="http://www.cisco.com/c/en/us/solutions/industries/public-sector.html">Public Sector</a></li>
+
+<li><a href="http://www.cisco.com/c/en/us/solutions/industries/retail.html">Retail</a></li>
+
+<li><a href="http://www.cisco.com/c/en/us/solutions/industries/smart-connected-communities.html">Smart+Connected Communities</a></li>
+
+<li><a href="http://www.cisco.com/c/en/us/solutions/industries/sports-entertainment.html">Sports and Entertainment</a></li>
+
+<li><a href="http://www.cisco.com/c/en/us/solutions/industries/transportation.html">Transportation</a></li>
+
+<li><a href="http://www.cisco.com/c/en/us/solutions/industries/workplace-transformation.html">Workplace Transformation</a></li>
+
+				    </ul>
+					<button class="close-button" value="Close submenu" title="Close submenu"><span></span><span></span></button>
+				</div>
+			</div>
+		</h4>
+
+            <h4><a href="https://marketplace.cisco.com/">Marketplace</a></h4>
+
+	    <h4><a href="http://www.cisco.com/web/siteassets/contacts/index.html">Contacts</a></h4>
+	    <ul>
+			<li><a href="http://www.cisco.com/web/siteassets/contacts/index.html">Contact Cisco</a></li>
+
+<li><a href="http://www.cisco.com/c/en/us/solutions/partner-ecosystem.html">Meet our Partners</a></li>
+<li><a href="https://locatr.cloudapps.cisco.com/WWChannels/LOCATR/openBasicSearch.do">Find a Reseller</a></li>
+
+
+	    </ul>
+    </div>
+
+    <div>
+	    <h4><a href="https://newsroom.cisco.com/">News &amp; Alerts</a></h4>
+	    <ul>
+			<li><a href="https://newsroom.cisco.com/">Newsroom</a></li>
+			<li><a href="http://blogs.cisco.com/">Blogs</a></li>
+			<li><a href="http://www.cisco.com/c/en/us/support/web/tsd-products-field-notice-summary.html">Field Notices</a></li>
+			<li><a href="https://tools.cisco.com/security/center/publicationListing.x">Security Advisories</a></li>
+	    </ul>
+
+	    <h4><a href="http://www.cisco.com/c/en/us/solutions/technology-trends.html">Technology Trends</a></h4>
+	    <ul>
+
+<li><a href="http://www.cisco.com/c/en/us/solutions/cloud/overview.html">Cloud</a></li>
+<li><a href="http://www.cisco.com/c/en/us/solutions/internet-of-things/overview.html">Internet of Things (IoT)</a></li>
+<li><a href="http://www.cisco.com/c/en/us/solutions/software-defined-networking/overview.html">Software Defined Networking (SDN)</a></li>
+
+		</ul>
+    </div>
+
+    <div>
+	    <h4><a href="http://www.cisco.com/c/en/us/support/index.html">Support</a></h4>
+	    <ul>
+			<li><a href="https://software.cisco.com/download/navigator.html?i=!ch">Downloads</a></li>
+			<li><a href="http://www.cisco.com/cisco/web/psa/default.html">Documentation</a></li>
+	    </ul>
+
+	    <h4><a href="https://communities.cisco.com/welcome">Communities</a></h4>
+	    <ul>
+			<li><a href="https://developer.cisco.com/">DevNet</a></li>
+			<li><a href="https://learningnetwork.cisco.com/">Learning Network</a></li>
+			<li><a href="https://supportforums.cisco.com/index.jspa">Support Community</a></li>
+	    </ul>
+
+		<h4><a href="http://video.cisco.com/">Video Portal</a>
+			<div class="submenu-container">
+				<button class="menu-button" value="Open Video Portal submenu" title="Open Video Portal submenu"><span></span></button>
+				<div class="fatfooter-submenu">
+				    <ul>
+						<li><a href="http://video.cisco.com/#category/videos/certifications" target="_blank">Certifications</a></li>
+						<li><a href="http://video.cisco.com/#category/videos/events" target="_blank">Events</a></li>
+						<li><a href="http://video.cisco.com/#category/videos/industries" target="_blank">Industries</a></li>
+						<li><a href="http://video.cisco.com/#category/videos/inside-cisco" target="_blank">Inside Cisco</a></li>
+						<li><a href="http://video.cisco.com/#category/videos/products" target="_blank">Products</a></li>
+
+
+					 </ul>
+
+				    <ul>
+						<li><a href="http://video.cisco.com/#category/videos/service-provider" target="_blank">Service Provider</a></li>
+						<li><a href="http://video.cisco.com/#category/videos/services" target="_blank">Services</a></li>
+						<li><a href="http://video.cisco.com/#category/videos/technology-trends" target="_blank">Technology Trends</a></li>
+						<li><a href="http://video.cisco.com/#category/videos/techwisetv" target="_blank">TechWiseTV</a></li>
+				    </ul>
+					<button class="close-button" value="Close submenu" title="Close submenu"><span></span><span></span></button>
+				</div>
+			</div>
+		</h4>
+    </div>
+
+    <div>
+	    <h4><a href="http://www.cisco.com/c/en/us/about.html">About Cisco</a></h4>
+	    <ul>
+			<li><a href="http://investor.cisco.com/">Investor Relations</a></li>
+			<li><a href="http://csr.cisco.com/" target="_blank">Corporate Social Responsibility</a></li>
+			<li><a href="http://csr.cisco.com/pages/environment" target="_blank">Environmental Sustainability</a></li>
+			<li><a href="http://www.cisco.com/c/en/us/about/trust-transparency-center/overview.html">Trust and Transparency Center</a></li>
+
+<li><a href="http://www.cisco.com/c/m/en_us/never-better/index.html?CAMPAIGN=NBT-00+NBABT&amp;COUNTRY_SITE=us&amp;POSITION=link&amp;REFERRING_SITE=cisco.com&amp;CREATIVE=fat+footer+nbabt+text">There's Never Been A Better Time</a></li>
+
+<li><a href="http://weare.cisco.com/">Our People</a></li>
+
+	    </ul>
+
+<h4><a href="http://www.cisco.com/c/en/us/about/careers.html">Careers</a></h4>
+<ul>
+<li><a href="https://jobs.cisco.com/?utm_source=careersite&amp;utm_campaign=CDC_MainFooter" target="_blank">Search Jobs</a></li>
+<li><a href="http://www.cisco.com/c/en/us/about/careers/life-at-cisco.html">Life at Cisco</a></li>
+</ul>
+
+
+
+	    <h4>Programs</h4>
+	    <ul>
+			<li><a href="http://www.cisco.com/c/en/us/support/web/communities/vip.html">Cisco Designated VIP Program</a></li>
+			
+<li><a href="http://www.cisco.com/c/en/us/solutions/cisco-powered/overview.html">Cisco Powered</a></li>
+			<li><a href="http://www.cisco.com/web/ciscocapital/americas/us/index.html">Financing Options</a></li>
+
+	    </ul>
+    </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- begin: responsive fat footer re-use wrapper-->
+
+ 
+<!-- end: responsive fat footer re-use wrapper-->
+ 
+ 
+       
+       </div></div>   
+       
+ 
+
+<!-- end: responsive fat footer re-use wrapper-->
+      
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer id="fw-footer" class="container " tabindex="-1" data-owner="ID">
+    <ul>
+        <li><a href="http://www.cisco.com/cisco/web/siteassets/contacts/index.html">Contacts</a></li>
+        <li><a href="https://secure.opinionlab.com/ccc01/o.asp?id=jBjOhqOJ" target="feedback_window">Feedback</a></li>
+        <li><a href="http://www.cisco.com/web/help/index.html">Help</a></li>
+        <li><a href="http://www.cisco.com/web/siteassets/sitemap/index.html">Site Map</a></li>
+        <li><a href="http://www.cisco.com/web/siteassets/legal/terms_condition.html">Terms &amp; Conditions</a></li>
+        <li>
+            <a href="http://www.cisco.com/web/siteassets/legal/privacy_full.html"><span>Privacy</span><span>Privacy Statement</span></a>
+        </li>
+        <li>
+            <a href="http://www.cisco.com/web/siteassets/legal/privacy_full.html#cookies"> <span>Cookies</span><span>Cookie Policy</span></a>
+        </li>
+        <li><a href="http://www.cisco.com/web/siteassets/legal/trademark.html">Trademarks</a></li>
+    </ul>
+</footer>   
+    
+
+
+
+<div id="fw-copyright">© 2017 Cisco and/or its affiliates. All rights reserved.</div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="fw-overlay" style="display: none;"></div>  
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/responsive.min.js.tải xuống"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/eot_metricsrule.js.tải xuống" type="text/javascript"></script>
+<script src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/eot_ie8logoinsert.js.tải xuống" type="text/javascript"></script> 
+<script src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/jqmodal.js.tải xuống" type="text/javascript"></script>
+    
+    
+
+    <!-- SiteCatalyst code version: H.24.4. -->
+    <noscript>&lt;img src="//cisco.112.2o7.net/b/ss/cisco-mobile/5/12345" width="2" height="2" border="0" alt=""/&gt;</noscript>
+    <!--[if IE 8]></ie><![endif]-->
+
+
+
+
+
+<div><iframe id="cross-domain-iframe" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/xdcLsFrame.html" style="display: none;"></iframe></div><iframe name="__bkframe" id="__bkframe" title="bk" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/saved_resource.html" style="border: 0px; width: 0px; height: 0px; display: none; position: absolute; clip: rect(0px 0px 0px 0px);"></iframe><div style="width:0px; height:0px; display:none; visibility:hidden;" id="batBeacon0.6739489550969482"><img style="width:0px; height:0px; display:none; visibility:hidden;" id="batBeacon0.9631155766566324" width="0" height="0" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/0"><img style="width:0px; height:0px; display:none; visibility:hidden;" id="batBeacon0.43326710677529756" width="0" height="0" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/0(1)"></div><script type="application/javascript" id="ywa-1487377903850-763236" class="ywa-1000177780039" defer="" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/sp.pl.tải xuống"></script><script src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/saved_resource" type="text/javascript"></script><img src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/l" width="1" height="1" border="0" alt="" style="display: none;"><script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/zpanel_20140825.js.tải xuống"></script><script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/zsizzle.20110528.js(1).tải xuống"></script><script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/ztrack.20131013.js(1).tải xuống"></script><script type="text/javascript" src="./Aggressive Load Balancing on Wireless LAN Controllers (WLCs) Release 6.0.182.0 and Earlier Configuration Example - Cisco_files/ztrackingembed.20140911.js.tải xuống"></script><div class="z_panel_base z_p_Tracking z_ps_Default" id="pw_8a32ad344fd6b7c8014fe0949ffa3b44" style="height: 0px; display: none;"><span><br> </span></div><span></span></body></html>

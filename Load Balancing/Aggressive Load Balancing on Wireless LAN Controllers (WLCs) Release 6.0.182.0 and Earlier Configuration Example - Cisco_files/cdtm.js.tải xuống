@@ -1,0 +1,1290 @@
+//Return Visit identification logic
+returnVisitConfig =(function(){
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var returnVisit = false;
+        var profileExcludeList =["ctms","cec","apps","microsite"]; // where lib-media is not loaded
+        var setVisitTime = function(currData){
+          //console.log("In exclude List: ",profileExcludeList.indexOf(cdtmClosure['profile']));
+            if((typeof(Storage) !== "undefined")&&(profileExcludeList.toString().indexOf(cdtmClosure['profile']) == -1)){
+                 //console.log("setting last Visit time storage");
+                ctm.util.cdls.setConfigInfo("lastVisitTime",currData);
+            } else {
+              //console.log("skipping last visit time storage in call back");
+                // Sorry! No Web Storage support..
+            }
+        };
+        var processInfo = function(data){
+            //console.log(typeof data);
+            //console.log(data.value);
+            //var lastVisitTime = (typeof data == "object")?data['value']:data;
+            //console.log(lastVisitTime);
+            //lastVisitTime= data.value;
+            var lastVisitTime;
+            if(typeof data !="undefined"){
+                if(typeof data === "object"){
+                    //console.log(data);
+                    lastVisitTime = data['value'];
+                }else{
+                    lastVisitTime = data;
+                }               
+            }
+            var currentTime =  Math.round(Date.now()/minutes);
+            if(typeof lastVisitTime == "undefined" || lastVisitTime === null){ //New Visit
+                //console.log("First time visitor");
+                setVisitTime(currentTime); //set Visitor time for the first Visit               
+            }else{// Subsequent Visit
+                //console.log("Subsequent Visit");
+                var timeGapinVisit = currentTime - lastVisitTime;
+                //console.log("gap in time visit",timeGapinVisit);
+                //in between 30 minutes and 30 days (30*24*60) and not in profile exclude list
+                if((timeGapinVisit>30&&timeGapinVisit<43200)&&(profileExcludeList.toString().indexOf(cdtmClosure['profile']) == -1)){ 
+                //if(timeGapinVisit>20&&timeGapinVisit<60){
+                   returnVisit = true;
+                   //invokeDoubleClick is defined in doubleclick tag extension in libmedia library (Tealium)
+                   if(typeof ctm.util.invokeDoubleClick ==="function"){
+                    //console.log("in call back.... returnVisit:"+returnVisit+" and invoking double click tag fire");
+                    ctm.util.invokeDoubleClick();
+                   }
+                }else{
+                   returnVisit = false;
+                }
+                //console.log("is returnVisit",returnVisit);
+                setVisitTime(currentTime);          
+            }
+        };
+        var init = function(){           
+                ctm.util.cdls.getConfigInfo("lastVisitTime",processInfo);           
+        };
+        var isReturnVisit = function(){
+            return returnVisit;
+        };
+        return{
+            init:init,
+            //isReturnVisitor:isReturnVisitor,
+            isReturnVisit:isReturnVisit
+        }
+    
+    })();
+//end on return visit 
+//utility for blukai campaign processing 
+campaignProcess = (function() {
+  try {
+    var seconds = 1000;
+    var minutes = seconds * 60;
+    var hours = minutes * 60;
+    var days = hours * 24;
+    var dataServiceName ="";
+    var profileExcludeList =["ctms","cec","apps"]; // where lib-media is not loaded
+    var isFirstCallToCampaign = false;
+    var isdiffCampaign = false;
+    var newCampaignJSON,processedCampaignObj;
+    var init = function() { 
+      //initiate only in profiles where lib-media is loaded
+      if(profileExcludeList.toString().indexOf(cdtmClosure['profile']) == -1){
+        ctm.util.cdls.getConfigInfo("campaignTS", campaignWorkFlow);
+      }         
+    };
+    var campaignDataService = function(dataService, callBack, serviceName) {
+      //console.log("in init CampaignService");
+      this.dataServiceName = serviceName;
+      jQuery.ajax({
+        type: 'GET',
+        url: dataService,
+        //async:false,
+        jsonp: "callback",
+        jsonpCallback: callBack,
+        contentType: "application/json",
+        dataType: 'jsonp',
+        /*success: function(jsonResponse) {
+          console.log("in success");
+          console.log(jsonResponse);
+        },*/
+        error: function(e) {
+          console.log("in campaign JSON Service error");
+          console.log(e);
+        }
+      });
+    };
+    var campaignWorkFlow = function(data) {
+      //invoke Campaign Data Service if either it is first request or last request made is >24 hours
+      var lastCampaignTS;
+      if (typeof data != "undefined") {
+        if (typeof data === "object") {
+          //console.log(data);
+          lastCampaignTS = data['value'];
+        } else {
+          lastCampaignTS = data;
+        }
+      }
+      var currentTime = Math.round(Date.now() / minutes);
+      if (typeof lastCampaignTS == "undefined" || lastCampaignTS === null) { //No Campaign Stored
+        //console.log("No Camapaign stored yet--- first service call need to be made");
+        isFirstCallToCampaign = true; // use this flag in 'bkCampaignCallback'
+        setCampaignTimeStamp(currentTime); //set Visitor time for the first Visit        
+        campaignDataService("//tags.bluekai.com/site/27647?ret=js&limit=1&jscb=bkCampaignCallback","bkCampaignCallback","bluekai");              
+      } else { // Subsequent Visit
+        //console.log("Subsequent Service Call ---");
+        var timeGapinCampaign = currentTime - lastCampaignTS;
+        //console.log("timeGap ---",timeGapinCampaign);
+        if(timeGapinCampaign>1440){ //Greater than 24 hours (60*24)
+          setCampaignTimeStamp(currentTime); //set Visitor time for the subsequent Visit after 24 hours
+          campaignDataService("//tags.bluekai.com/site/27647?ret=js&limit=1&jscb=bkCampaignCallback","bkCampaignCallback","bluekai");
+        }
+      }
+    };
+    var storeCampaign = function(campaignObj) { // utility yo store Campaign Object in local storage
+      //console.log("-- storing campaign --");
+      ctm.util.cdls.setConfigInfo("campaignJSON", JSON.stringify(campaignObj));
+    };
+    var setCampaignTimeStamp = function(time) {// utility yo store Campaign time stamp in local storage
+      ctm.util.cdls.setConfigInfo("campaignTS", time);
+    }
+    var compareCampaign = function(data){ // utility to compare to two Campaigns
+      //console.log("in compare campaign");
+      var storedCampaign;
+      if ((typeof data != "undefined")&&(typeof data === "object")) {
+          //console.log(data['value']);
+          storedCampaign = JSON.parse(data['value']);
+        }
+      //console.log("stored campaign ---");
+      //console.log(storedCampaign);
+      //console.log("new Campaign ---");
+      //console.log(newCampaignJSON);
+      isdiffCampaign = !isSameCampaign(storedCampaign,newCampaignJSON);
+      //console.log("is different Campaign",isdiffCampaign);
+      storeCampaign(newCampaignJSON); // store New Campaign in local storage
+      if(isdiffCampaign){ // if it is different campaign fire tag        
+        invokeDataTag(newCampaignJSON);
+      }
+
+    };
+    //utility function used by 'compareCampaign'
+    var isSameCampaign = function(campaignObj1, campaignObj2) { 
+      var obj1 = getCampaignProps(campaignObj1);
+      var obj2 = getCampaignProps(campaignObj2);
+      //console.log(obj1);
+      //console.log(obj2);
+      return compareObj(obj1, obj2);
+    };
+    //utility function to compare to 2 JSON objects
+    var compareObj = function(obj1, obj2) {
+      var keysObj1 = Object.keys(obj1).sort();
+      var keysObj2 = Object.keys(obj2).sort();
+      // when both does not have same length of defined keys
+      if (keysObj1.length !== keysObj2.length) {
+        //console.log("false");   
+        return false;
+      } // compare keys
+      else if (keysObj1.join('') !== keysObj2.join('')) {
+        //console.log(false);
+        return false;
+      } else { // compare values, since both have same keys
+        for (i = 0; i < keysObj1.length; i++) {
+          if (typeof obj1[keysObj1[i]] != typeof obj2[keysObj1[i]]) {
+            return false;
+          } else { // both values are of same type
+            if (typeof obj1[keysObj1[i]] == "string") {
+              if (obj1[keysObj1[i]] !== obj2[keysObj1[i]]) {
+                return false;
+              }
+            }
+          }
+        }
+      }
+      return true;
+    };
+    //Process the Raw Campaing JSON and return object with comparable params
+    //used in 'isSameCampaign' and 'processCampaignObj'
+    var getCampaignProps = function(campaignObj) {
+      var obj = {
+        //"tpCampaign":[],
+        //"tpCategories":[],
+        "tpSource": this.dataServiceName
+      };
+      jQuery.each(campaignObj.campaigns, function(i, j) {
+        //obj["tpCampaign"].push(j.campaign);
+        var tempArray = [];
+        jQuery.each(j.categories, function(k, catId) {
+          //obj["tpCategories"].push(catId.categoryID);
+          tempArray.push(catId.categoryID);
+        });
+        obj[j.campaign] = tempArray.sort().join(',');
+      });
+
+      return obj;
+    };
+    //Finally Processed Campaign object with delimitters in place
+    var processCampaignObj = function(campaignData) {
+      //As per story US64840, we shall not capture CategoryData
+      var obj = {
+        "tpCampaign": [],
+        //"tpCategories": [],
+        "tpSource": ""
+      };
+      var tempObj = getCampaignProps(campaignData);
+      obj["tpSource"] = tempObj["tpSource"];
+      delete tempObj["tpSource"];
+      //console.log(tempObj);
+      for (var i in tempObj) {
+        obj["tpCampaign"].push(i);
+        //obj["tpCategories"].push(tempObj[i]);
+      }
+      obj["tpCampaign"] = obj["tpCampaign"].join('|');
+      //obj["tpCategories"] = obj["tpCategories"].join('|');
+      return obj;
+    };
+    //utility getter methods
+    var isDiffCampaignObj = function(){
+      return isdiffCampaign;
+    };
+    var setProcessedCampaign = function(obj){
+      processedCampaignObj = obj;
+    };
+    var getProcessedCampaign = function(){
+      return processedCampaignObj;
+    };
+    var isFirstCallToCampaignService = function(){
+      return isFirstCallToCampaign;
+    };
+    //utility to invoke data tag
+    var invokeDataTag = function(campaignData) {
+      var campaignInfoObj = processCampaignObj(campaignData);
+      //console.log(campaignInfoObj);
+      setProcessedCampaign(campaignInfoObj);
+      trackEvent.event("data", {
+        "tp_campaign": campaignInfoObj["tpCampaign"],
+        //"tp_category": campaignInfoObj["tpCategories"],
+        "tp_source": campaignInfoObj["tpSource"]
+      });
+    };
+    var bkCampaignCallback = function(response) {
+      //console.log("call back func");
+      //console.log(response);
+      newCampaignJSON = response; // this is used later in 'compareCampaign'
+      // if it is first call to campaign, there is no campaign stored to compare
+      if(isFirstCallToCampaign){ 
+      //console.log("first call to Campaign");        
+        storeCampaign(response);
+        invokeDataTag(response);
+      }else{ // we already have campaign stored locally, compare and process it
+        ctm.util.cdls.getConfigInfo("campaignJSON", compareCampaign);
+      }
+    };
+
+  } catch (e) {
+    console.log("campaignProcess exception");
+  }
+  return{
+    init: init,
+    isFirstCallToCampaign:isFirstCallToCampaignService,
+    isDiffCampaignObj:isDiffCampaignObj,
+    getProcessedCampaign: getProcessedCampaign,
+    bkCampaignCallback:bkCampaignCallback
+  }
+})();
+
+//call back function for bluekai service 
+bkCampaignCallback = campaignProcess.bkCampaignCallback;
+
+//end of blukai campaign processing 
+//Storage Process Utility
+ctmsStorage = (function(){ try{
+	var curr_ts = Math.round(Date.now()/(1000)); //Timestamp in seconds
+  var omsKeys = {'oid':'oid', 'dtid':'dtid', 'ccid':'ccid', 'oeid':'oeid', 'ecid':'ecid', 'keycode':'keycode'}; //Any oms data in future can be added here along with individual validity if required
+  var tsPrefix = "_ts";
+  var omsDataValidity = 7776000; //Validity in seconds
+  var isValidOldData = false;
+  var isNewOmsData = false;
+  //Get OMS data from querystring object using omskeys object
+  var getOmsDataFromQS = function(o) {
+    if(typeof o === "undefined" || Object.keys(o).length <=0) {return {};}
+    var a = {};
+    for(var key in omsKeys) {
+      if(typeof o[key] !== "undefined" && o[key] != "") {
+        a[key] = o[key];
+        a[key+tsPrefix] = curr_ts;
+        isNewOmsData = true;
+      }
+    }
+    return a;
+  };
+  //Fire tags using omsData
+  var sendOmsData = function(b) {
+    var o = {};
+    o['storage.offerId'] = b.oid;
+    o['storage.driveToId'] = b.dtid;
+    o['storage.commCampId'] = b.ccid;
+    o['storage.offerEleId'] = b.oeid;
+    o['storage.eloqCampId'] = b.ecid;
+    o['storage.keycode'] = b.keycode;
+    o['ev'] = "data";
+    trackEvent.event("data",o);   
+  };
+  //validate any key in obj using its timestamp stored in key_ts
+  //TO-DO: Make this a utility function
+  var validateData = function (key,obj,validity){
+    var key_ts = obj[key+tsPrefix];
+    if(typeof obj[key] == "undefined" || obj[key] == "") {return;}
+    if(curr_ts-key_ts <= validity){ return true; }
+    else { return false; }
+  };
+  //Validate stored oms data for each of omskeys
+  var getValidOldData = function(od) {
+    var validity = omsDataValidity; //validity in seconds
+    var o = {};
+    for (var key in omsKeys) {
+      if(validateData(key,od,validity)) {
+        o[key] = od[key];
+        o[key+tsPrefix] = od[key+tsPrefix];
+        isValidOldData = true;
+      }
+      else{
+        //o[key] = o[key+tsPrefix] = "";
+      }
+    }
+    return o;
+  };
+  //Merging 2 objects, later taking the precedence
+  //TO-DO: make this a utility function
+  var mergeObjs = function (o1, o2) { //o2 overwrites o1 incase of duplicates
+    if ( typeof o1 !== 'object' ) { o1 = {}; }
+    for(var key in o2) {
+      if(o2.hasOwnProperty(key)) {
+        var val = o2[key];
+        if(typeof val === "object") {
+          o1[key] = mergeObjs(o1[key],val);
+          continue;
+        }
+        if(typeof val !== "undefined" && val != "" && val != null)
+          o1[key] = val;
+      }
+    }
+    return o1;
+  };
+  var processOmsData = function() {
+    var qsObj = ctm.util.getQueryStringObj();
+    var newOmsData = getOmsDataFromQS(qsObj); //returns isNewOmsData=true if QS found.
+    var dataToSend = newOmsData;
+    var persistData = newOmsData;
+    //console.log("Processing OMS data - newOmsData:",newOmsData);
+    ctm.util.cdls.getConfigInfo("omsData",function(data){
+      var oldData = JSON.parse(data.value);
+      
+      //Get valid old data & merge with new data
+      if(typeof oldData !== "undefined" && oldData !=null) { 
+        // assume newOmsData exists
+        var validOldData = getValidOldData(oldData); // TO DO: Just use this to SEND, not to store.
+        //finalOmsData = mergeObjs(validOldData,newOmsData); //Order is important for priority(newOmsData is higher in priority)
+        //console.log("Final Data:",finalOmsData);
+        persistData = mergeObjs(oldData, newOmsData);
+        dataToSend = mergeObjs(validOldData, newOmsData);
+      } 
+      //Update Sotrage only for  new data
+      if(isNewOmsData) {
+        //console.log("Saving OMS data to XDLC Storage:",finalOmsData);
+        //ctm.util.cdls.setConfigInfo("omsData",JSON.stringify(finalOmsData));
+        ctm.util.cdls.setConfigInfo("omsData",JSON.stringify(persistData));
+      }
+
+      //Fire a tag if VALID data exists.
+      // based on the results of getValidOldData();
+      if(isNewOmsData || isValidOldData) { 
+        sendOmsData(dataToSend);
+        //sendOmsData(finalOmsData);
+        ctm.util.qFunc.runNow = true;
+        ctm.util.qFunc.run();
+      } else {
+        ctm.util.qFunc.runNow = true;
+        ctm.util.qFunc.run();
+      }
+      //else{ console.log("NO New data & NO Valid Old data. Doing nothing !"); } //Do nothing
+    });
+  };
+            return {
+                processOmsData: processOmsData
+            };
+}catch(e){console.log("ctmsStorage error:",e);}
+})();
+
+//xdLocal storage utiltiy
+window.xdLocalStorage = window.xdLocalStorage || (function () {
+  var MESSAGE_NAMESPACE = 'cross-domain-local-message';
+  var options = {
+    iframeId: 'cross-domain-iframe',
+    iframeUrl: undefined,
+    initCallback: function () {}
+  };
+  var requestId = -1;
+  var iframe;
+  var requests = {};
+  var wasInit = false;
+  var iframeReady = true;
+
+  function applyCallback(data) {
+    if (requests[data.id]) {
+      requests[data.id](data);
+      delete requests[data.id];
+    }
+  }
+
+  function receiveMessage(event) {
+    var origin = event.origin || event.originalEvent.origin;
+    if (origin !== "https://www.cisco.com"){
+      //console.log("Event not received from 'https://cisco.com', hence ignoring -- origin:",origin,"event:",event);
+      return;
+    }
+    var data;
+    try {
+      data = JSON.parse(event.data);
+    } catch (err) {
+      //not our message, can ignore
+    }
+    if (data && data.namespace === MESSAGE_NAMESPACE) {
+      if (data.id === 'iframe-ready') {
+        iframeReady = true;
+        options.initCallback();
+      } else {
+        applyCallback(data);
+      }
+    }
+  }
+
+  function buildMessage(action, key, value, callback) {
+    requestId++;
+    requests[requestId] = callback;
+    var data = {
+      namespace: MESSAGE_NAMESPACE,
+      id: requestId,
+      action: action,
+      key: key,
+      value: value
+    };
+    //console.log("buildMessage posting data to cisco.com iframe with data:",data);
+    iframe.contentWindow.postMessage(JSON.stringify(data), "https://www.cisco.com");
+  }
+
+  function init(customOptions) {
+    options = XdUtils.extend(customOptions, options);
+    var temp = document.createElement('div');
+
+    if (window.addEventListener) {
+      window.addEventListener('message', receiveMessage, false);
+    } else {
+      window.attachEvent('onmessage', receiveMessage);
+    }
+
+    temp.innerHTML = '<iframe id="' + options.iframeId + '" src=' + options.iframeUrl + ' style="display: none;"></iframe>';
+    document.body.appendChild(temp);
+    iframe = document.getElementById(options.iframeId);
+  }
+
+  function isApiReady() {
+    if (!wasInit) {
+      console.log('You must call xdLocalStorage.init() before using it.');
+      return false;
+    }
+    if (!iframeReady) {
+      console.log('You must wait for iframe ready message before using the api.');
+      return false;
+    }
+    return true;
+  }
+
+  return {
+    //callback is optional for cases you use the api before window load.
+    init: function (customOptions) {
+      if (!customOptions.iframeUrl) {
+        throw 'You must specify iframeUrl';
+      }
+      if (wasInit) {
+        console.log('xdLocalStorage was already initialized!');
+        return;
+      }
+      wasInit = true;
+      if (document.readyState === 'complete') {
+        init(customOptions);
+      } else {
+        window.onload = function () {
+          init(customOptions);
+        };
+      }
+    },
+    setItem: function (key, value, callback) {
+      if (!isApiReady()) {
+        return;
+      }
+      buildMessage('set', key, value, callback);
+    },
+
+    getItem: function (key, callback) {
+      if (!isApiReady()) {
+        return;
+      }
+      buildMessage('get', key,  null, callback);
+    },
+    removeItem: function (key, callback) {
+      if (!isApiReady()) {
+        return;
+      }
+      buildMessage('remove', key,  null, callback);
+    },
+    key: function (index, callback) {
+      if (!isApiReady()) {
+        return;
+      }
+      buildMessage('key', index,  null, callback);
+    },
+    getSize: function(callback) {
+      if(!isApiReady()) {
+        return;
+      }
+      buildMessage('size', null, null, callback);
+    },
+    getLength: function(callback) {
+      if(!isApiReady()) {
+        return;
+      }
+      buildMessage('length', null, null, callback);
+    },
+    clear: function (callback) {
+      if (!isApiReady()) {
+        return;
+      }
+      buildMessage('clear', null,  null, callback);
+    },
+    wasInit: function () {
+      return wasInit;
+    }
+  };
+})();
+//xd utils
+window.XdUtils = window.XdUtils || (function () {
+
+  function extend(object, defaultObject) {
+    var result = defaultObject || {};
+    var key;
+    for (key in object) {
+      if (object.hasOwnProperty(key)) {
+        result[key] = object[key];
+      }
+    }
+    return result;
+  }
+
+  //public interface
+  return {
+    extend : extend
+  };
+})();
+//end of xd utils
+//Cross domain Local storage function wrappers 
+    if (typeof ctm == "undefined") {
+        ctm = {};
+    }
+    if (typeof ctm.util == "undefined") {
+        ctm.util = {};
+    }
+    ctm.util.isCdLs = (window.location.hostname !== "www.cisco.com")?true:false;
+    //ctm.util.utagInitiated = false;
+    
+    ctm.util.cdls = {
+        // Store
+        setConfigInfo: function(storeName, configObj) {
+            try {                           
+                    xdLocalStorage.setItem(storeName, configObj);                             
+                return true;
+            } catch (e) {
+			          console.log("exception",e);
+                return false;
+            }
+        },
+        getConfigInfo: function(storeName, callBack) {
+            try {
+                    xdLocalStorage.getItem(storeName,callBack);
+            } catch (e) {
+                console.log("exception",e);
+                return false;
+            }
+        },
+        deleteConfigInfo: function(storeName) {
+            try {
+                    xdLocalStorage.removeItem(storeName);
+            } catch (e) {
+			             console.log("exception",e);
+                   return false;
+            }
+        }
+    };
+
+    ctm.util.getQueryStringObj = function () {
+      var qsObj = {};
+      var query = window.location.search.substring(1);
+      var vars = query.split('&');
+      for (var i = 0; i < vars.length; i++) {
+        if(typeof vars[i] !== "undefined" && vars[i] != ""){
+          var pair = vars[i].split('=');
+          qsObj[decodeURIComponent(pair[0]).toLowerCase()] = decodeURIComponent(pair[1]);
+        }
+      }
+      //console.log('Returning qsObj:', qsObj);
+      return qsObj;
+    };
+
+    ctm.util.omsData = [];
+  ctm.util.qFunc = (function() {
+      // function queue utility.
+      // add as many functions as needed with qFunc.add(), and use run() to execute them when you're ready.
+      var q = [];
+      var cbq = [];
+      var runNow = false;
+
+      var queueThis = function(yourFunction) {
+          if (q) {
+              q.push(yourFunction);
+          }
+      };
+
+      var run = function() {
+          // run must detect if we need to run the normal queue or the queue with cb's.
+          if (q.length > 0) {
+              for (var i = 0; i <= q.length - 1; i++) {
+                  if (typeof q[i] === "function") {
+                      q[i].call();
+                  }
+              }
+          } else if (cbq.length > 0) {
+              // TODO: probably should define a better else;
+              for (var i = 0; i <= cbq.length - 1; i++) {
+                  if (typeof cbq[i][0] === "function" && typeof cbq[i][1] === "function") {
+                      cbq[i][0].call(); //calls the queued function;
+                      //TODO: cb reference in queue is no longer needed, as it will be called after this runs and calls xdls.
+                  }
+              }
+              cbq = []; //clear array when done.
+              ctm.util.omsData = [];
+          }
+
+      };
+
+      var append = function(func) {
+          queueThis(func);
+      };
+
+      var qCb = function(func, cb, callback) {
+          // generates a multi-dimensional array of queued actions, and cb's to follow each action.
+          if (cbq) {
+              cbq.push([func, cb])
+          }
+          callback();
+      }
+
+      return {
+          append: append,
+          queueCB: qCb,
+          run: run,
+          runNow: runNow
+      };
+  })();
+
+    ctm.util.getOMS = function(omsKey, cb) {
+
+      // TODO: add "done" cb to queue;
+        // function that will retrieve a value from OMS after XDLS is finished.  
+        // More than one value request can be made and those requests will be queued.
+        // takes an OMS key as input, returns oms value as output.
+
+        // default action, function with key is queued;
+        // these queued functions won't run until qFun.run() is called, or the runNow flag is set to true;
+      ctm.util.qFunc.queueCB(function() {
+          xdLocalStorage.getItem("omsData", function(data) {
+            if(typeof data.value !== "undefined") {
+              var storedData = JSON.parse(data.value);
+              if (storedData) {
+                for (var i = 0; i <= omsKey.length - 1; i++) {
+                 // console.log(omsKey[i].toString());
+                  var omsKey_ts= omsKey[i].toString()+"_ts"; //creating time stamp key
+                  //console.log(omsKey_ts);
+                  if ((storedData[omsKey[i]])&&(storedData[omsKey_ts])) {                    
+                    var tempObj = {};
+                    tempObj[omsKey[i]] = storedData[omsKey[i]];
+                    tempObj[omsKey_ts] = storedData[omsKey_ts];
+                    ctm.util.omsData.push(tempObj);
+                  }
+                }
+              }
+            }
+          cb(ctm.util.omsData);  // cb no longer queued.
+        })
+      }, cb, function() {
+        if (ctm.util.qFunc.runNow === true) {
+          // if the runNow flag was set to true, running this function will run the queue without waiting for OMS to run again.
+          ctm.util.qFunc.run();
+        }
+      });
+
+    }
+
+//end of cross domain LS function wrappers
+//intializing cross domain local storage
+     xdLocalStorage.init(
+                {
+                    /* required */
+                    iframeUrl:'https://www.cisco.com/assets/ctm/xdc/xdcLsFrame.html',
+                    //an option function to be called right after the iframe was loaded and ready for action
+                    initCallback: function () {
+                        //console.log('Got iframe ready');
+                        //console.log(returnVisit);
+                        returnVisitConfig.init();
+						            ctmsStorage.processOmsData();
+                        ctm.util.returnVisitInitialized = true;
+                        campaignProcess.init();
+                    }
+                }
+            );
+
+// ctmsFe is a non-conflicting copy of cdc.util.findEnvironment for use outside of cisco framework pages.
+var ctmsFe = (function(){
+    function matchEnvironment(envToMatch) {
+        var envToMatch = envToMatch.replace (/\.cisco\.com$|\.jiveon\.com$|\.cisco$/i, ""); // Remove the top-level domain, if any
+        var prodRegexes = [
+            "www[0-9]*"
+            , "apps"
+            , "cdx"
+            , "cepx-active-prod[0-9]*"
+            , "wemapp-(author|publish)-(prod[0-9]|nprd)[0-9]*-[0-9]*"
+            , "www-(author|test|publish)"
+            , "www-(author|test|publish)-nprd"
+            , "wwwin-tools"
+            , "cisco-apps"
+            , "grs"
+            , "investor"
+            , "newsroom"
+            , "origin-software"
+            , "software"
+            , "sso[0-9]*"
+            , "tools"
+            , "webapps"
+            , "wwwin"
+            , ".*\.cloudapps"
+            , ".*\.cisco"
+            , "^nic$"
+            , "supportforums"
+        ];
+        var stageRegexes = [
+            "apps-lt"
+            , "apps-stage"
+            , "cdx-stage"
+            , "(cepx|ecmx)-(active|staging|wip)-(lt|stage)[0-9]*"
+            , "fdk-author-lt"
+            , "fdk-author-stage"
+            , "(www(in)?-)?fdk-(publish-)?lt[0-9]*"
+            , "(www(in)?-)?fdk-(publish-)?.?stage[0-9]*"
+            , "wemapp-(author|publish)-.?stage[0-9]*-[0-9]*"
+            , "software-lt"
+            , "software-stage"
+            , "sso-nprd[0-9]*"
+            , "tools-lt"
+            , "tools-stage"
+            , "www-lt[0-9]*"
+            , "www-(author-|publish-)*stage[0-9]*"
+            , "webapps-lt"
+            , "webapps-stage"
+            , "wwwin-tools-(dev|stage|lt)"
+            , "wwwin-stage"
+            , ".*\-stage\.cloudapps"
+            , ".*\-lt\.cloudapps"
+            , ".*\-preprod"
+        ];
+        var devRegexes = [
+            "apps-dev"
+            , "cdx-dev"
+            , "cepx-active-dev[0-9]*"
+            , "ecmx-active-dev[0-9]*"
+            , "fdk-(author-)?dev[0-9]*"
+            , "(www(in)?-)?fdk-(author-)?devint[0-9]*"
+            , "wemapp-(author|publish)-(dev|devint|idev)[0-9]*-[0-9]*"
+            , "software-dev"
+            , "sso-idev[0-9]*"
+            , "tools-dev"
+            , "www-(dev|idev)[0-9]*"
+            , "localhost"
+            , "webapps-dev"
+            , "wwwin-dev"
+            , ".*\-dev\.cloudapps"
+        ];
+        var prodStrings = new RegExp ("^(" + prodRegexes.join ("|") + ")(\\.|:|$)");
+        var stageStrings = new RegExp ("^(" + stageRegexes.join ("|") + ")(\\.|:|$)");
+        var devStrings = new RegExp ("^(" + devRegexes.join ("|") + ")(\\.|:|$)");
+        return (function (location) {
+            if (devStrings.test (location)) {
+                return "dev";
+            }
+            if (stageStrings.test (location)) {
+                return "stage";
+            }
+            if (prodStrings.test (location)) {
+                return "prod";
+            }
+            return "unknown";
+        }) (envToMatch);
+    };
+    // *** mingle #8222
+    // returns an environment based dev or stage subdomain
+    function getEnvSubdomain(platform, subdomain, forceStage) {
+        var target_subdom = (subdomain === '' || subdomain === null || subdomain === undefined) ? 'www' : subdomain;
+        var environment = cdc.util.findEnvironment();
+        if (environment === 'stage' || (environment === 'dev' && forceStage === 'force') ) {
+            if (platform !== 'wp') {
+                target_subdom = 'fdk-stage';
+            } else {
+                target_subdom = target_subdom + '-stage';
+            }
+        } else if (environment === 'dev') {
+            if (platform !== 'wp') {
+                target_subdom = 'fdk-devint';
+            } else {
+                target_subdom = target_subdom + '-dev';
+            }
+        }
+        return target_subdom;
+    };
+    function fe() {
+        return matchEnvironment(window.location.host);
+    }
+
+    return {
+        findEnv: fe,
+        matchEnv: matchEnvironment
+    };
+})();
+
+var cdcPerformance = (function() {
+  sendPerformance = function(payload) {
+    var env = ctmsFe.findEnv();
+    if (env === "prod") {
+        var sensor = "//cisco-tags.cisco.com/tag/ntpagetagjson.gif"
+        var sensorLoaded = sensor + "?performance=" + encodeURIComponent(payload);
+        var sensorImg = document.createElement("img");
+        sensorImg.width = 1;
+        sensorImg.height = 1;
+        sensorImg.src = sensorLoaded;
+        return sensorImg;
+    } else {
+        return false;
+    }
+  };
+  getPerformance = function() {
+    if (typeof performance !== "undefined") {
+        var p = performance.timing;
+        var performanceData = {
+          "performance": {
+            "redirectTiming" : p.fetchStart - p.navigationStart,
+            "appCacheTiming" : p.domainLookupStart - p.fetchStart,
+            "dnsTiming" : p.domainLookupEnd - p.domainLookupStart,
+            "tcpTiming" : p.connectEnd - p.connectStart,
+            "requestTiming" : p.responseStart - p.connectEnd,
+            "responseTiming" : p.responseEnd - p.responseStart,
+            "processingTiming" : p.loadEventStart - p.domLoading,
+            "onLoadTiming" : p.loadEventEnd - p.loadEventStart,
+            "totalPageLoadTime" : p.loadEventEnd - p.navigationStart
+          },
+          "page": {
+            "url":location.href
+          }
+        };
+        return performanceData;
+    };
+  };
+  writePerformanceData = function() {
+      //if not exit:
+        if (typeof performance !== "undefined") {
+            window.onbeforeunload = function () {
+                  var performanceData = getPerformance();
+                  performanceData["performanceInstances"] = Object.keys(performanceData).length;;
+                  performanceData["performanceMarks"] = performance.getEntriesByType("mark");
+                    // Put the object into storage
+                    if (typeof localStorage !== "undefined") {
+                          localStorage.setItem('performanceData', JSON.stringify(performanceData));
+                    }
+              }
+      }
+  };
+  retrievePerformanceData = function() {
+        // Retrieve the object from storage
+        if (typeof localStorage !== "undefined") { 
+            var retrievedObject = localStorage.getItem('performanceData');
+        };
+
+        // Do things with it ...
+        //console.log('retrievedObject: ', JSON.parse(retrievedObject));
+        return retrievedObject;
+        //sendPerformance(JSON.parse(retrievedObject));
+  };
+  sendPerformanceOnExit = function() {
+    var p = getPerformance();
+    sendPerformance(p);
+  };
+  return {
+    sendPerformanceOnExit: sendPerformanceOnExit,
+    retrievePerformanceData: retrievePerformanceData,
+    writePerformanceData: writePerformanceData,
+    sendPerformance: sendPerformance
+  }
+
+})();
+
+cdtmClosure =(function() {
+    // so we can leave the global namespace better than we found it.
+cdtmLoaded = true; // flag which is used in global scode (/web/global/omniture/s_code.js) to prevent double loading of metrics
+var activeProfile = "";
+var loc = window.location.href; // "http://www.cisco.com";
+loc = loc.toLowerCase();
+try {
+	var currScrpt = document.currentScript; // refers to current loaded script
+} catch(e) {
+	console.log(e);
+}
+
+if (typeof cdc !== "undefined" && typeof cdc.homepage !== "undefined" && cdc.homepage.isHomepage) {
+    activeProfile = "home";
+}
+
+function setEnv () {
+    if (typeof cdc != "undefined" && typeof cdc.util.findEnvironment != "undefined") {
+        var thisEnv = cdc.util.findEnvironment();
+        switch (thisEnv) {
+            case "dev":
+            return "dev";
+            break;
+            case "stage":
+            return "qa";
+            break;
+            case "prod":
+            return "prod";
+            break;
+            case "unknown":
+            return "prod";
+            break;
+        }
+    }
+}
+function getMetricsSrcInfo(){ // get metrics info source, which loaded cdtm.js
+	var metricsSrcInfo = "";
+	try {		
+		if(currScrpt.getAttribute('data-config-src') !=null){
+			metricsSrcInfo = currScrpt.getAttribute('data-config-src');		 
+		}else{
+			metricsSrcInfo = checkSnapshot();
+		}
+		return metricsSrcInfo;
+	} catch(e) {
+		console.log(e);
+		return metricsSrcInfo; // returns empty string in case of any JS exception
+	}
+	
+}
+function checkSnapshot() { // utilty used by getMetricsSrcInfo for checking snapshot versions
+	try {
+		var scrptTagResp = document.querySelector('script[src*="/etc/designs/cdc/fw/snapshots/js/responsive-"]');
+		var scrptTagSate = document.querySelector('script[src*="/etc/designs/cdc/fw/snapshots/js/satellite-"]');
+		//console.log(scrptTagResp);
+		var snapShot, version;
+		snapShot = "";
+		if (scrptTagResp != null) {
+			//console.log("get the version of responive");
+			version = parseFloat(scrptTagResp.getAttribute("src").match(/-(.*)v\.js/)[1]);
+			snapShot = (version > 1.10) ? "Snapshot-Responsive-" + version : "";
+			//console.log(version);
+		} else if (scrptTagSate != null) {
+			version = parseFloat(scrptTagSate.getAttribute("src").match(/-(.*)v\.js/)[1]);
+			snapShot = (version > 1.10) ? "Snapshot-Satellite-" + version : "";
+		}
+		return snapShot;
+	} catch(e) {
+		console.log(e);
+	}
+	
+}
+var env = setEnv();
+var srcInfo = getMetricsSrcInfo();
+
+var config = {
+    // url properties must be ordered from longest to shortest.,
+
+        //excluded sites
+        ".cisco.com/c/m/zh_cn/never-better/digital-b-business.html":"cdc",
+        ".cisco.com/c/m/zh_cn/never-better/digital-db-business.html":"cdc",
+        ".cisco.com/cisco/psn":"ctms",
+
+        //nbabt-cn
+        ".cisco.com/c/m/zh_cn/never-better/":"nbabt-cn",
+        ".cisco.com/c/zh_cn/products/security/index.html":"nbabt-cn",
+        ".cisco.com/c/zh_cn/solutions/enterprise-networks/cisco-digital-network-architecture.html":"nbabt-cn",
+        ".cisco.com/c/zh_cn/products/hyperconverged-infrastructure/index.html":"nbabt-cn",
+
+        //bnp
+        "apps.cisco.com/Commerce/":"bnp",
+        "apps.cisco.com/ccw":"bnp",
+        "buildprice.cisco.com":"bnp",
+
+        //cec
+        "onesearch.cisco.com":"cec",
+        "onesearch%.cloudapps.cisco.com":"cec",        
+        "srchui%.cloudapps.cisco.com":"cec",
+        "diralpha%.cloudapps.cisco.com":"cec",
+        "techzone.cisco.com/":"cec",
+        "techzone-stage.cisco.com/":"cec",
+        "cisco.jiveon.com":"cec",    
+        "cisco-poc.jiveon.com":"cec",
+        "cisco-preprod.jiveon.com":"cec",
+        "wiki%.cisco.com":"cec",
+        "wwwin-tools%.cisco.com/dir/":"cec",
+        "directory%.cisco.com":"cec",
+        ".cisco.com/c/cec/":"cec",
+        ".cisco.com/c/r/gsx/":"cec",
+        "gsx-nprd.cisco.com/c/r/gsx/":"cec",
+        "gsx.cisco.com":"cec",
+        "wwwin.cisco.com":"cec",
+
+        //search
+        "search.cisco.com":"search",
+        "searchx.cisco.com":"search",
+
+        //commerce (now mostly cdc) prod
+        "smbmarketplace.cisco.com":"cdc",
+        "beli.cisco.com.cisco.com":"cdc",
+        "ciscobusinesslink.cisco.com":"cdc",
+        "solucionespyme.cisco.com":"cdc",
+        "ticcostarica.com":"cdc",
+        "todoenredesecuador.com":"cdc",
+        "armada.cisco.com.tr":"cdc",
+
+        //commerce (now mostly cdc) non-prod
+        "tools-stage-was7.cisco.com/ys3bnx/":"commerce",
+        "qa.ciscosmb.psdops.com":"cdc", //should cover all qa instances
+        
+        //support
+        "mycase.cloudapps.cisco.com/":"support",
+        "mycase-%.cloudapps.cisco.com/":"support",
+        "quickview-stage.cloudapps.cisco.com/":"support",
+        "quickview.cloudapps.cisco.com/":"support",
+        "bst-stage.cloudapps.cisco.com/bugsearch/":"support",
+        "bst.cloudapps.cisco.com/bugsearch/":"support",
+        "snmp-stage.cloudapps.cisco.com/support/snmp/":"support",
+        "snmp.cloudapps.cisco.com/support/snmp/":"support",
+        "cway.cisco.com":"support",
+        "cway-stg.cisco.com":"support",
+        "supportforums.cisco.com":"support",
+        "csc-stage.cisco.com":"support",
+        "software.cisco.com":"support",
+        ".cisco.com/support/":"support",
+        ".cisco.com/cpc/":"support",    
+        ".cisco.com/servicerequesttool/":"support",
+        ".cisco.com/bugsearch":"support",
+        ".cisco.com/swift/":"support",
+        ".cisco.com/itdit/cfn/":"support",
+        ".cisco.com/gct/upgrade/":"support",
+        ".cisco.com/itdit/mibs/servlet/":"support",
+        ".cisco.com/en/us/support/":"support",
+        ".cisco.com/cisco/web/support/":"support",
+        ".cisco.com/cisco/web/psa/":"support",
+        ".cisco.com/cisco/web/br/support/":"support",
+        ".cisco.com/cisco/web/br/psa/":"support",
+        ".cisco.com/cisco/web/cn/support/":"support",
+        ".cisco.com/cisco/web/cn/psa/":"support",
+        ".cisco.com/cisco/web/jp/support/":"support",
+        ".cisco.com/cisco/web/jp/psa/":"support",
+        ".cisco.com/cisco/web/la/support/":"support",
+        ".cisco.com/cisco/web/la/psa/":"support",
+        ".cisco.com/cisco/web/ru/support/":"support",
+        ".cisco.com/cisco/web/ru/psa/":"support",
+        ".cisco.com/cisco/web/ca/fr/support/":"support",
+        ".cisco.com/cisco/web/ca/fr/psa/":"support",
+        ".cisco.com/c/%/support/":"support",
+        ".cisco.com/c/%/td/":"support",
+        "csc-%.cisco.com":"support",
+        ".cisco.com/web/applicat/dsprecal/":"support",
+        ".cisco.com/web/tsweb/":"support",
+        ".cisco.com/cgi-bin/software/":"support",
+        ".cisco.com/cgi-bin/xxipsnet/":"support",
+        
+        //cdc
+        "cce%.cloudapps.cisco.com":"cdc",
+
+        //apps
+        "cloudsso.cisco.com":"apps",
+		"sso.cisco.com":"apps",
+		"sso%.cisco.com":"apps",
+		"swipe.cisco.com":"apps",
+        "globalcontacts.cloudapps.cisco.com/contacts/":"apps",
+        "globalcontacts.cloudapps.cisco.com/secure/":"apps",
+        "globalcontacts-stage.cloudapps.cisco.com/contacts/":"apps",
+        "globalcontacts-dev.cloudapps.cisco.com/contacts/":"apps",
+        "locatr%.cloudapps.cisco.com/":"cdc",
+        "dcpplat%.cloudapps.cisco.com":"apps",
+        "dcp%.cisco.com":"apps",
+        "camp.cloudapps.cisco.com":"apps",
+        "camp-stage.cloudapps.cisco.com":"apps",
+        "camp-dev.cloudapps.cisco.com":"apps",
+        "campperl.cloudapps.cisco.com":"apps",
+        "campperl-stage.cloudapps.cisco.com":"apps",
+        "campperl-dev.cloudapps.cisco.com":"apps",
+        "ciscoarchive.cloudapps.cisco.com":"apps",
+        "ciscoarchive-stage.cloudapps.cisco.com":"apps",
+        "ciscoarchive-dev.cloudapps.cisco.com":"apps",
+        "tools.cisco.com":"apps",
+        "webapps.cisco.com":"apps",
+        "apps.cisco.com":"apps",
+        "smartservices%.cloudapps.cisco.com":"apps",
+        "tools%.cisco.com/smartservices":"apps",
+        "jasperconnect.cisco.com":"apps",
+        "jasperconnect%.cloudapps.cisco.com":"apps",
+
+        //cdc
+        "videolounge.cisco.com":"cdc",
+        "blogs.cisco.com":"cdc",
+        "communities.cisco.com":"cdc",
+        "communities-private.cisco.com":"cdc",
+        ".cisco.com/c/r/":"cdc",
+        "internetofeverything.cisco.com":"cdc",
+        "ioeassessment.cisco.com":"cdc",
+        "share.cisco.com":"cdc",
+        "newsroom.cisco.com":"cdc",
+        "video.cisco.com":"cdc",
+        "weare.cisco.com":"cdc",
+        "socialmedia.cisco.com":"cdc",
+        "marketplace.cisco.com":"cdc",
+        "salesconnect.cisco.com":"cdc",
+        "developer.cisco.com/site/devnet/":"cdc",
+        ".epuboffers.cisco.com":"cdc",
+        "csr.cisco.com":"cdc",
+        "offers.cisco.com":"cdc",
+        "b2me.cisco.com":"cdc",
+        "digital.cisco.com":"cdc",
+        "demand.cisco.com":"cdc",
+        "lifeconnections.cisco.com":"cdc",
+        "td.cloudsec.sco.cisco.com":"cdc",
+        "td-stage.cloudsec.sco.cisco.com":"cdc",
+        "b2me-cisco-com.p03.elqsandbox.com":"cdc",
+        "info-ciscotest1-com.p03.elqsandbox.com":"cdc",
+        "cognitive.cisco.com":"cdc",
+        "grs.cisco.com":"cdc",
+        ".cisco.com/cisco/web/uk/":"cdc",
+        ".cisco.com/c/dam/":"cdc",
+        "innovationgrandchallenge.cisco.com":"cdc",
+        "continuum.cisco.com":"cdc",
+        "discover.cisco.com":"cdc",
+        ".cisco.com/":"cdc",
+        ".acquisitionconnection.com":"cdc",
+        "cisco-ecommunities.jiveon.com":"cdc",
+        "ciscostaging.jiveon.com":"cdc",
+        "cisco-marketing.uat5.hosted.jivesoftware.com":"cdc",           
+        ".ciscolive.com":"cdc",
+        ".youtubecisco.com":"cdc",
+        ".jasper.com":"cdc",
+        "cisco-inspire.jp":"cdc",        
+        "cisco.acc-test.jp/inspire":"cdc",
+        "umbrella-stage.opendns.com":"cdc",
+
+        //microsite
+        "unleashedit.com":"microsite",
+        "uberflip.com":"microsite", 
+        ".connectedfuturesmag.com":"microsite",
+        "app.smartsheet.com":"microsite",
+        "network.51cto.com/act/cisco_content/2016":"microsite",
+        "chinabyte.com/content/cisco2016":"microsite",
+        "huffingtonpost.ca":"microsite",
+        "cr.silverpush.co":"microsite",
+        "sueddeutsche.de":"microsite",
+        "nowiresnoworries.com":"microsite",
+        "ciscodnareadinessbrief.com":"microsite",
+        "uat-ciscodnareadinessbrief-com.webappuat.com":"microsite",
+
+
+        ".":"ctms"
+};
+
+if (activeProfile === "") {
+    // If we already set a profile using a method other than a url match, we will skip this step.
+    for (var f in config) {
+        // check for profile before checking url
+        if (config[f] !== "") {
+            var pattern = f;
+            pattern = pattern.replace(new RegExp("\\.","g"),"\\."); //convert all "."s in url to non-special using escape char
+            pattern = pattern.replace(new RegExp("%","g"),".*?"); //Replace the wildcard "%" with ".*?" to match anything including blank("")
+            var re = new RegExp(pattern);
+            if (re.test(loc)) {
+                activeProfile = config[f];
+                break; // only one profile can be used per-match.
+            }
+        }
+    }
+}
+
+function getUtag(activeProfile, env){
+	if (typeof env == "undefined") {
+		env = "prod";
+	}	
+	var a='//tags.tiqcdn.com/utag/cisco/' + activeProfile + '/' + env + '/utag.js';
+	var b=document;
+	var c='script';
+	var d=b.createElement(c);
+	var s= (srcInfo != "")? srcInfo:"cdtm";
+	d.src=a;
+	d.type='text/java'+c;
+	d.setAttribute("data-config-src", s);
+	d.async=true;
+	a=b.getElementsByTagName(c)[0];
+	a.parentNode.insertBefore(d,a);
+};
+
+/**
+* Code to disable UT on specified location, using local storage concept used in livemanger
+* This code can be removed once satellite.js framework is updated
+*/
+
+try {
+        /*delete local storage if it already set */
+       if (cdc.util.ut.getConfigInfo() !== false) {
+        cdc.util.ls.deleteConfigInfo("utConfig");
+        }
+        if (location.pathname.indexOf("/c/r/en/us/internet-of-everything-ioe/") >=0){
+        //if (location.pathname == "/c/r/en/us/internet-of-everything-ioe/tomorrow-starts-here/index.html") {
+            var localConfig = {
+                //load these any time the test loader is used. override these with values from unique configs
+                //NOTE: these are NOT UT production defaults. They are specific to non-production environments
+
+                domain: ".cisco.com", // domain value used to write cookies.
+                exit_domain: "cisco.com", // used to qualify as exit link
+                passthru: true, // DOP specific. pass any data received. [false (use map) | true (passthrough) ]
+                // individual sub library load locations
+                dop_src: "",
+                s_code_src: "",
+                s_code_ut_src: "",
+                trackevent_src: "",
+                visualsciences_ut_src: "",
+                rs_map_src: "",
+                rs_map_home_src: "",
+                ntpagetag_src: ""
+
+            };
+            cdc.util.ls.setConfigInfo("utConfig", localConfig);
+        }
+
+} catch (e) {}
+/*End of code to disable UT on Satellite pages*/
+
+if (activeProfile !== "") {
+        getUtag(activeProfile,env);       
+    }
+// End of cdtmClosure;
+return{
+  profile:activeProfile,
+  environment:env,
+  srcInfo:srcInfo
+};
+})();
